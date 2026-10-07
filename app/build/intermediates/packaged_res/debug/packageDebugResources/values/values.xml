@@ -7,7 +7,7 @@
     <color name="teal">#0E9AA7</color>
     <color name="teal_dark">#0B6E79</color>
     <color name="white">#FFFFFF</color>
-    <string name="app_name">ClinicQueueJetpack</string>
+    <string name="app_name">CliniQ</string>
     <style name="BigButton" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">56dp</item>

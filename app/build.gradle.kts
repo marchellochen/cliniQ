@@ -3,10 +3,10 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 android {
-    namespace = "com.example.clinicqueue"
+    namespace = "com.example.cliniq"
     compileSdk = 35
     defaultConfig {
-        applicationId = "com.example.clinicqueue"
+        applicationId = "com.example.cliniq"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
