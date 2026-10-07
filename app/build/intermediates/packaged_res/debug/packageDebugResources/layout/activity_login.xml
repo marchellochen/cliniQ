@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/mint" android:gravity="center"
+    android:orientation="vertical" android:padding="28dp">
+
+    <TextView android:layout_width="84dp" android:layout_height="84dp"
+        android:background="@drawable/bg_circle" android:gravity="center"
+        android:text="✚" android:textColor="@color/white" android:textSize="40sp" />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" android:text="ClinicQueue"
+        android:textColor="@color/teal_dark" android:textSize="30sp" android:textStyle="bold" />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp" android:text="Skip the waiting room crowd"
+        android:textColor="@color/scrub_blue" />
+
+    <com.google.android.material.textfield.TextInputLayout style="@style/Field" android:hint="Email">
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/etEmail"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout style="@style/Field"
+        android:hint="Password" app:endIconMode="password_toggle"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/etPassword"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button android:id="@+id/btnLogin" style="@style/BigButton"
+        android:layout_marginTop="24dp" android:text="Log in" />
+</LinearLayout>

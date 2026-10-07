@@ -1,0 +1,9 @@
+<resources>
+    <color name="teal">#0E9AA7</color>
+    <color name="teal_dark">#0B6E79</color>
+    <color name="scrub_blue">#2F6DB5</color>
+    <color name="mint">#E3F5F6</color>
+    <color name="bg">#F7FCFC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#757575</color>
+</resources>

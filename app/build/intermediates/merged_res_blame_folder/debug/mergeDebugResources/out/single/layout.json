@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "com.example.clinicqueue.app-mergeDebugResources-33:/layout/activity_login.xml",
+        "source": "com.example.clinicqueue.app-main-36:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.clinicqueue.app-mergeDebugResources-33:/layout/activity_pharmacy.xml",
+        "source": "com.example.clinicqueue.app-main-36:/layout/activity_pharmacy.xml"
+    },
+    {
+        "merged": "com.example.clinicqueue.app-mergeDebugResources-33:/layout/activity_home.xml",
+        "source": "com.example.clinicqueue.app-main-36:/layout/activity_home.xml"
+    },
+    {
+        "merged": "com.example.clinicqueue.app-mergeDebugResources-33:/layout/item_doctor.xml",
+        "source": "com.example.clinicqueue.app-main-36:/layout/item_doctor.xml"
+    },
+    {
+        "merged": "com.example.clinicqueue.app-mergeDebugResources-33:/layout/activity_prescription.xml",
+        "source": "com.example.clinicqueue.app-main-36:/layout/activity_prescription.xml"
+    },
+    {
+        "merged": "com.example.clinicqueue.app-mergeDebugResources-33:/layout/activity_ticket.xml",
+        "source": "com.example.clinicqueue.app-main-36:/layout/activity_ticket.xml"
+    },
+    {
+        "merged": "com.example.clinicqueue.app-mergeDebugResources-33:/layout/activity_form.xml",
+        "source": "com.example.clinicqueue.app-main-36:/layout/activity_form.xml"
+    },
+    {
+        "merged": "com.example.clinicqueue.app-mergeDebugResources-33:/layout/activity_doctors.xml",
+        "source": "com.example.clinicqueue.app-main-36:/layout/activity_doctors.xml"
+    }
+]
