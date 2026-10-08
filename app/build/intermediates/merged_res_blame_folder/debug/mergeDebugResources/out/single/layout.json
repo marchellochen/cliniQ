@@ -1,19 +1,27 @@
 [
     {
-        "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_signup.xml",
-        "source": "com.example.cliniq.app-main-38:/layout/activity_signup.xml"
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-35:\\layout\\activity_pharmacy.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-38:\\layout\\activity_pharmacy.xml"
     },
     {
-        "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_login.xml",
-        "source": "com.example.cliniq.app-main-38:/layout/activity_login.xml"
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-35:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-38:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-35:\\layout\\activity_home.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-38:\\layout\\activity_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-35:\\layout\\activity_signup.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-38:\\layout\\activity_signup.xml"
     },
     {
         "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_doctors.xml",
         "source": "com.example.cliniq.app-main-38:/layout/activity_doctors.xml"
     },
     {
-        "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_pharmacy.xml",
-        "source": "com.example.cliniq.app-main-38:/layout/activity_pharmacy.xml"
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-35:\\layout\\activity_ticket.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-38:\\layout\\activity_ticket.xml"
     },
     {
         "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/item_doctor.xml",
@@ -24,12 +32,36 @@
         "source": "com.example.cliniq.app-main-38:/layout/activity_form.xml"
     },
     {
-        "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_home.xml",
-        "source": "com.example.cliniq.app-main-38:/layout/activity_home.xml"
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-35:\\layout\\activity_form.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-38:\\layout\\activity_form.xml"
+    },
+    {
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-35:\\layout\\activity_prescription.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-38:\\layout\\activity_prescription.xml"
     },
     {
         "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_ticket.xml",
         "source": "com.example.cliniq.app-main-38:/layout/activity_ticket.xml"
+    },
+    {
+        "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_signup.xml",
+        "source": "com.example.cliniq.app-main-38:/layout/activity_signup.xml"
+    },
+    {
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-35:\\layout\\item_doctor.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-38:\\layout\\item_doctor.xml"
+    },
+    {
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-35:\\layout\\activity_doctors.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-38:\\layout\\activity_doctors.xml"
+    },
+    {
+        "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_pharmacy.xml",
+        "source": "com.example.cliniq.app-main-38:/layout/activity_pharmacy.xml"
+    },
+    {
+        "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_home.xml",
+        "source": "com.example.cliniq.app-main-38:/layout/activity_home.xml"
     },
     {
         "merged": "com.example.cliniq.app-mergeDebugResources-35:/layout/activity_prescription.xml",

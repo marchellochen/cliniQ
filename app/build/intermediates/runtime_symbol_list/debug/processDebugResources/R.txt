@@ -2956,7 +2956,6 @@ int drawable common_google_signin_btn_text_light 0x7f070092
 int drawable common_google_signin_btn_text_light_focused 0x7f070093
 int drawable common_google_signin_btn_text_light_normal 0x7f070094
 int drawable common_google_signin_btn_text_light_normal_background 0x7f070095
-int drawable cursor_error 0x7f0700fb
 int drawable design_fab_background 0x7f070096
 int drawable design_ic_visibility 0x7f070097
 int drawable design_ic_visibility_off 0x7f070098

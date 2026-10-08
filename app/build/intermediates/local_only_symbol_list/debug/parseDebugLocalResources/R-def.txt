@@ -9,7 +9,6 @@ color teal_dark
 color white
 drawable bg_circle
 drawable bg_circle_mint
-drawable cursor_error
 id btnBook
 id btnDone
 id btnLogin

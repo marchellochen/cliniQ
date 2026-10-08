@@ -1,42 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fillViewport="true">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:padding="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <TextView android:id="@+id/tvDoctor" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:textColor="@color/teal_dark"
+        <TextView
+            android:id="@+id/tvDoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/teal_dark"
             android:textStyle="bold" />
 
-        <com.google.android.material.textfield.TextInputLayout style="@style/Field" android:hint="Age">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etAge"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Field"
+            android:hint="Age">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout style="@style/Field"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Field"
             android:hint="Known allergies (optional)">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etAllergies"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAllergies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout style="@style/Field"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Field"
             android:hint="Describe your health problem">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etSymptoms"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:gravity="top" android:inputType="textMultiLine" android:minLines="3" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSymptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout style="@style/Field"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Field"
             android:hint="How long have you had it?">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etDuration"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button android:id="@+id/btnSubmit" style="@style/BigButton"
-            android:layout_marginTop="24dp" android:text="Get queue number" />
+        <Button
+            android:id="@+id/btnSubmit"
+            style="@style/BigButton"
+            android:layout_marginTop="24dp"
+            android:text="Get queue number" />
     </LinearLayout>
 </ScrollView>

@@ -1,36 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:padding="20dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-    <TextView android:id="@+id/tvGreeting" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:textColor="@color/teal_dark"
-        android:textSize="26sp" android:textStyle="bold" />
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp" android:text="How can we help you today?"
+    <TextView
+        android:id="@+id/tvGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/teal_dark"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="How can we help you today?"
         android:textColor="@color/gray" />
 
-    <com.google.android.material.card.MaterialCardView android:id="@+id/cardMessage"
-        style="@style/InfoCard" android:layout_marginBottom="16dp">
-        <TextView android:id="@+id/tvMessage" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:padding="18dp"
-            android:textColor="@color/teal_dark" android:textStyle="bold" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardMessage"
+        style="@style/InfoCard"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:textColor="@color/teal_dark"
+            android:textStyle="bold" />
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView android:id="@+id/cardActive"
-        style="@style/InfoCard" android:layout_marginBottom="12dp">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical" android:padding="18dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Active queue" android:textColor="@color/teal_dark" />
-            <TextView android:id="@+id/tvActive" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="20sp" android:textStyle="bold" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardActive"
+        style="@style/InfoCard"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active queue"
+                android:textColor="@color/teal_dark" />
+            <TextView
+                android:id="@+id/tvActive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <Button android:id="@+id/btnBook" style="@style/BigButton" android:text="Book an appointment" />
-    <Button android:id="@+id/btnTicket" style="@style/BigButton" android:text="View my ticket" />
+    <Button
+        android:id="@+id/btnBook"
+        style="@style/BigButton"
+        android:text="Book an appointment" />
+    <Button
+        android:id="@+id/btnTicket"
+        style="@style/BigButton"
+        android:text="View my ticket" />
 
-    <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
-    <Button android:id="@+id/btnLogout" style="@style/BigButtonOutlined" android:text="Log out" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        style="@style/BigButtonOutlined"
+        android:text="Log out" />
 </LinearLayout>
