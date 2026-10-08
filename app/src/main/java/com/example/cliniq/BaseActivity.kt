@@ -11,14 +11,24 @@ import kotlinx.coroutines.launch
  * Runs network code in a coroutine (so the UI doesn't freeze) and shows any error as a Toast.
  * [onDone] always runs afterwards, e.g. to re-enable a button.
  */
-fun AppCompatActivity.launchSafely(onDone: () -> Unit = {}, block: suspend () -> Unit) {
+fun AppCompatActivity.launchSafely(
+    onDone: () -> Unit = {},
+    onError: (Exception) -> Unit = {
+        Toast.makeText(
+            this,
+            it.message ?: "Something went wrong",
+            Toast.LENGTH_LONG
+        ).show()
+    },
+    block: suspend () -> Unit
+) {
     lifecycleScope.launch {
         try {
             block()
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            Toast.makeText(this@launchSafely, e.message ?: "Something went wrong", Toast.LENGTH_LONG).show()
+            onError(e)
         }
         onDone()
     }

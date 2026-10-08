@@ -37,7 +37,23 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             binding.btnLogin.isEnabled = false
-            launchSafely(onDone = { binding.btnLogin.isEnabled = true }) {
+            launchSafely(
+                onDone = {
+                    binding.btnLogin.isEnabled = true
+                },
+                onError = { e ->
+                    if (e.message?.contains("invalid_credentials", ignoreCase = true) == true) {
+                        binding.emailLayout.error = "Invalid email or password"
+                        binding.passwordLayout.error = "Invalid email or password"
+                    } else {
+                        Toast.makeText(
+                            this,
+                            e.message ?: "Login failed",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            ) {
                 ClinicRepo.signIn(email, pass)
                 goHome()
             }

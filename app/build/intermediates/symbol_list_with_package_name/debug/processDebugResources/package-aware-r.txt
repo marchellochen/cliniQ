@@ -2957,6 +2957,7 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable cursor_error
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
@@ -3230,6 +3231,7 @@ id edge
 id edit_query
 id edit_text_id
 id elastic
+id emailLayout
 id embed
 id end
 id endToStart
@@ -3400,6 +3402,7 @@ id parent
 id parentPanel
 id parentRelative
 id parent_matrix
+id passwordLayout
 id password_toggle
 id path
 id pathRelative
