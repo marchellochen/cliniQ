@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.clinicqueue"
+    package="com.example.cliniq"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="24"
+        android:minSdkVersion="26"
         android:targetSdkVersion="35" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <permission
-        android:name="com.example.clinicqueue.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.example.cliniq.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.example.clinicqueue.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+    <uses-permission android:name="com.example.cliniq.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
     <!-- <uses-sdk android:minSdkVersion="14"/> -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +27,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.ClinicQueue" >
         <activity
-            android:name="com.example.clinicqueue.LoginActivity"
+            android:name="com.example.cliniq.LoginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,22 +35,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.clinicqueue.HomeActivity" />
-        <activity android:name="com.example.clinicqueue.DoctorsActivity" />
-        <activity android:name="com.example.clinicqueue.FormActivity" />
-        <activity android:name="com.example.clinicqueue.TicketActivity" />
-        <activity android:name="com.example.clinicqueue.PrescriptionActivity" />
-        <activity android:name="com.example.clinicqueue.PharmacyActivity" />
+        <activity android:name="com.example.cliniq.SignupActivity" />
+        <activity android:name="com.example.cliniq.HomeActivity" />
+        <activity android:name="com.example.cliniq.DoctorsActivity" />
+        <activity android:name="com.example.cliniq.FormActivity" />
+        <activity android:name="com.example.cliniq.TicketActivity" />
+        <activity android:name="com.example.cliniq.PrescriptionActivity" />
+        <activity android:name="com.example.cliniq.PharmacyActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.example.clinicqueue.androidx-startup"
+            android:authorities="com.example.cliniq.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
                 android:value="androidx.startup" />
             <meta-data
+                android:name="io.github.jan.supabase.auth.SupabaseInitializer"
+                android:value="androidx.startup" />
+            <meta-data
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.russhwolf.settings.SettingsInitializer"
                 android:value="androidx.startup" />
             <meta-data
                 android:name="androidx.profileinstaller.ProfileInstallerInitializer"
@@ -80,7 +88,7 @@
 
         <provider
             android:name="com.google.mlkit.common.internal.MlKitInitProvider"
-            android:authorities="com.example.clinicqueue.mlkitinitprovider"
+            android:authorities="com.example.cliniq.mlkitinitprovider"
             android:exported="false"
             android:initOrder="99" />
 
@@ -93,6 +101,22 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <service
+            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+            android:exported="false" >
+            <meta-data
+                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+                android:value="cct" />
+        </service>
+        <service
+            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+
+        <receiver
+            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+            android:exported="false" />
         <receiver
             android:name="androidx.profileinstaller.ProfileInstallReceiver"
             android:directBootAware="false"
@@ -112,23 +136,6 @@
                 <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
             </intent-filter>
         </receiver>
-
-        <service
-            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-            android:exported="false" >
-            <meta-data
-                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-                android:value="cct" />
-        </service>
-        <service
-            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" >
-        </service>
-
-        <receiver
-            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-            android:exported="false" />
     </application>
 
 </manifest>

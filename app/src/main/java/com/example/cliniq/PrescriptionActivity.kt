@@ -11,14 +11,25 @@ class PrescriptionActivity : BaseActivity() {
         setContentView(binding.root)
         setupBar("Session finished", showBack = false)
 
+        fun setBusy(busy: Boolean) {
+            binding.btnYes.isEnabled = !busy
+            binding.btnNo.isEnabled = !busy
+        }
+
         binding.btnYes.setOnClickListener {
-            ClinicRepo.requestMedicine()
-            startActivity(Intent(this, PharmacyActivity::class.java))
-            finish()
+            setBusy(true)
+            launchSafely(onDone = { setBusy(false) }) {
+                ClinicRepo.finishSession(needsMedicine = true)   // creates the pharmacy queue number
+                startActivity(Intent(this, PharmacyActivity::class.java))
+                finish()
+            }
         }
         binding.btnNo.setOnClickListener {
-            ClinicRepo.finish("Session complete. Get well soon!")
-            goHome()
+            setBusy(true)
+            launchSafely(onDone = { setBusy(false) }) {
+                ClinicRepo.finishSession(needsMedicine = false)
+                goHome()
+            }
         }
     }
 }

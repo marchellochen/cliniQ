@@ -21,14 +21,15 @@ class TicketActivity : BaseActivity() {
             override fun handleOnBackPressed() = goHome()
         })
 
+        val doctor = ClinicRepo.doctorFor(appt.doctorId)
         binding.tvQueueNo.text = appt.queueNo
-        binding.tvDoctorName.text = appt.doctor.name
-        binding.tvDoctorInfo.text = "${appt.doctor.specialty} · ${appt.doctor.room}"
-        binding.tvAhead.text = "${appt.peopleAhead} people ahead of you"
+        binding.tvDoctorName.text = doctor?.name.orEmpty()
+        binding.tvDoctorInfo.text = if (doctor != null) "${doctor.specialty} · ${doctor.room}" else ""
+        binding.tvAhead.text = "${ClinicRepo.peopleAhead} people ahead of you"
         binding.ivQr.setImageBitmap(qrBitmap(appt.qrPayload))
 
         fun check(content: String) {
-            if (ClinicRepo.verifyScan(content)) {
+            if (content == appt.qrPayload) {
                 startActivity(Intent(this, PrescriptionActivity::class.java))
                 finish()
             } else {

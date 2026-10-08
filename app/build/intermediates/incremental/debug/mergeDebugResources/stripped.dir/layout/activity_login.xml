@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/mint" android:gravity="center"
     android:orientation="vertical" android:padding="28dp">
@@ -8,7 +9,7 @@
         android:background="@drawable/bg_circle" android:gravity="center"
         android:text="✚" android:textColor="@color/white" android:textSize="40sp" />
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" android:text="CliniQ"
+        android:layout_marginTop="16dp" android:text="cliniq"
         android:textColor="@color/teal_dark" android:textSize="30sp" android:textStyle="bold" />
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginBottom="24dp" android:text="Skip the waiting room crowd"
@@ -21,8 +22,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout style="@style/Field"
-        android:hint="Password" app:endIconMode="password_toggle"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:hint="Password" app:endIconMode="password_toggle">
         <com.google.android.material.textfield.TextInputEditText android:id="@+id/etPassword"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:inputType="textPassword" />
@@ -30,4 +30,9 @@
 
     <Button android:id="@+id/btnLogin" style="@style/BigButton"
         android:layout_marginTop="24dp" android:text="Log in" />
+
+    <TextView android:id="@+id/tvGoSignup" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_marginTop="20dp"
+        android:padding="8dp" android:text="No account yet? Create one"
+        android:textColor="@color/scrub_blue" android:textStyle="bold" />
 </LinearLayout>

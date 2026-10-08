@@ -17,8 +17,11 @@ class DoctorsActivity : BaseActivity() {
         setupBar("Choose a doctor")
 
         binding.rvDoctors.layoutManager = LinearLayoutManager(this)
-        binding.rvDoctors.adapter = DoctorAdapter(ClinicRepo.doctors) { doctor ->
-            startActivity(Intent(this, FormActivity::class.java).putExtra("doctorId", doctor.id))
+        launchSafely {
+            ClinicRepo.loadDoctors()   // now comes from the doctors table
+            binding.rvDoctors.adapter = DoctorAdapter(ClinicRepo.doctors) { doctor ->
+                startActivity(Intent(this, FormActivity::class.java).putExtra("doctorId", doctor.id))
+            }
         }
     }
 }

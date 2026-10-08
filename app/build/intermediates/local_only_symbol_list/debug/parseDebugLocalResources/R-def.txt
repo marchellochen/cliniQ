@@ -15,6 +15,7 @@ id btnLogin
 id btnLogout
 id btnNo
 id btnScan
+id btnSignup
 id btnSimulate
 id btnSubmit
 id btnTicket
@@ -25,6 +26,7 @@ id etAge
 id etAllergies
 id etDuration
 id etEmail
+id etName
 id etPassword
 id etSymptoms
 id ivQr
@@ -34,6 +36,8 @@ id tvAhead
 id tvDoctor
 id tvDoctorInfo
 id tvDoctorName
+id tvGoLogin
+id tvGoSignup
 id tvGreeting
 id tvInitial
 id tvMessage
@@ -48,6 +52,7 @@ layout activity_home
 layout activity_login
 layout activity_pharmacy
 layout activity_prescription
+layout activity_signup
 layout activity_ticket
 layout item_doctor
 string app_name

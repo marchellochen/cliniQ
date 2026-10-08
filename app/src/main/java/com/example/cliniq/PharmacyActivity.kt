@@ -10,10 +10,16 @@ class PharmacyActivity : BaseActivity() {
         setContentView(binding.root)
         setupBar("Pharmacy queue", showBack = false)
 
-        binding.tvPharmacyNo.text = ClinicRepo.pharmacyQueue
+        val appt = ClinicRepo.appointment
+        if (appt == null) { finish(); return }
+        binding.tvPharmacyNo.text = appt.pharmacyQueueNo
+
         binding.btnDone.setOnClickListener {
-            ClinicRepo.finish("Medicine received. Session complete!")
-            goHome()
+            binding.btnDone.isEnabled = false
+            launchSafely(onDone = { binding.btnDone.isEnabled = true }) {
+                ClinicRepo.completePickup()
+                goHome()
+            }
         }
     }
 }
