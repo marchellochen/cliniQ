@@ -1047,6 +1047,7 @@ int attr suffixText 0x7f0303c7
 int attr suffixTextAppearance 0x7f0303c8
 int attr suffixTextColor 0x7f0303c9
 int attr suggestionRowLayout 0x7f0303ca
+int attr swipeRefreshLayoutProgressSpinnerBackgroundColor 0x7f03048f
 int attr switchMinWidth 0x7f0303cb
 int attr switchPadding 0x7f0303cc
 int attr switchStyle 0x7f0303cd
@@ -2030,6 +2031,10 @@ int color secondary_text_default_material_dark 0x7f05030c
 int color secondary_text_default_material_light 0x7f05030d
 int color secondary_text_disabled_material_dark 0x7f05030e
 int color secondary_text_disabled_material_light 0x7f05030f
+int color status_cancelled 0x7f05031b
+int color status_done 0x7f05031c
+int color status_pharmacy 0x7f05031d
+int color status_waiting 0x7f05031e
 int color switch_thumb_disabled_material_dark 0x7f050310
 int color switch_thumb_disabled_material_light 0x7f050311
 int color switch_thumb_material_dark 0x7f050312
@@ -2927,6 +2932,7 @@ int drawable abc_textfield_search_material 0x7f070075
 int drawable abc_vector_test 0x7f070076
 int drawable avd_hide_password 0x7f070077
 int drawable avd_show_password 0x7f070078
+int drawable bg_chip 0x7f0700fc
 int drawable bg_circle 0x7f070079
 int drawable bg_circle_mint 0x7f07007a
 int drawable btn_checkbox_checked_mtrl 0x7f07007b
@@ -3154,6 +3160,7 @@ int id browser_actions_menu_items 0x7f08005d
 int id browser_actions_menu_view 0x7f08005e
 int id btnBook 0x7f08005f
 int id btnDone 0x7f080060
+int id btnHistory 0x7f0801fa
 int id btnLogin 0x7f080061
 int id btnLogout 0x7f080062
 int id btnNo 0x7f080063
@@ -3425,6 +3432,7 @@ int id right_side 0x7f08016c
 int id rounded 0x7f08016d
 int id row_index_key 0x7f08016e
 int id rvDoctors 0x7f08016f
+int id rvHistory 0x7f0801fb
 int id save_non_transition_alpha 0x7f080170
 int id save_overlay_view 0x7f080171
 int id sawtooth 0x7f080172
@@ -3480,6 +3488,7 @@ int id stop 0x7f0801a3
 int id stretch 0x7f0801a4
 int id submenuarrow 0x7f0801a5
 int id submit_area 0x7f0801a6
+int id swipeRefresh 0x7f0801fc
 int id tabMode 0x7f0801a7
 int id tag_accessibility_actions 0x7f0801a8
 int id tag_accessibility_clickable_spans 0x7f0801a9
@@ -3531,19 +3540,25 @@ int id transition_transform 0x7f0801d6
 int id triangle 0x7f0801d7
 int id tvActive 0x7f0801d8
 int id tvAhead 0x7f0801d9
+int id tvDate 0x7f0801fd
 int id tvDoctor 0x7f0801da
 int id tvDoctorInfo 0x7f0801db
 int id tvDoctorName 0x7f0801dc
+int id tvEmpty 0x7f0801fe
 int id tvGoLogin 0x7f0801dd
 int id tvGoSignup 0x7f0801de
 int id tvGreeting 0x7f0801df
 int id tvInitial 0x7f0801e0
 int id tvMessage 0x7f0801e1
 int id tvName 0x7f0801e2
+int id tvPharmacy 0x7f0801ff
 int id tvPharmacyNo 0x7f0801e3
+int id tvQueue 0x7f080200
 int id tvQueueNo 0x7f0801e4
 int id tvRoom 0x7f0801e5
 int id tvSpecialty 0x7f0801e6
+int id tvStatus 0x7f080201
+int id tvSymptoms 0x7f080202
 int id unchecked 0x7f0801e7
 int id uniform 0x7f0801e8
 int id unlabeled 0x7f0801e9
@@ -3680,6 +3695,7 @@ int layout abc_select_dialog_material 0x7f0b001a
 int layout abc_tooltip 0x7f0b001b
 int layout activity_doctors 0x7f0b001c
 int layout activity_form 0x7f0b001d
+int layout activity_history 0x7f0b0076
 int layout activity_home 0x7f0b001e
 int layout activity_login 0x7f0b001f
 int layout activity_pharmacy 0x7f0b0020
@@ -3707,6 +3723,7 @@ int layout design_text_input_start_icon 0x7f0b0035
 int layout ime_base_split_test_activity 0x7f0b0036
 int layout ime_secondary_split_test_activity 0x7f0b0037
 int layout item_doctor 0x7f0b0038
+int layout item_history 0x7f0b0077
 int layout m3_alert_dialog 0x7f0b0039
 int layout m3_alert_dialog_actions 0x7f0b003a
 int layout m3_alert_dialog_title 0x7f0b003b
@@ -6670,6 +6687,8 @@ int[] styleable StateListDrawableItem { 0x01010199 }
 int styleable StateListDrawableItem_android_drawable 0
 int[] styleable StateSet { 0x7f03015d }
 int styleable StateSet_defaultState 0
+int[] styleable SwipeRefreshLayout { 0x7f03048f }
+int styleable SwipeRefreshLayout_swipeRefreshLayoutProgressSpinnerBackgroundColor 0
 int[] styleable SwitchCompat { 0x01010124, 0x01010125, 0x01010142, 0x7f03038e, 0x7f0303a3, 0x7f0303cb, 0x7f0303cc, 0x7f0303ce, 0x7f03042f, 0x7f030430, 0x7f030431, 0x7f03045c, 0x7f030468, 0x7f030469 }
 int styleable SwitchCompat_android_textOn 0
 int styleable SwitchCompat_android_textOff 1

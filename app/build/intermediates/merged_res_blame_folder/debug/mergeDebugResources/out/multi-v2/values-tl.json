@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.cliniq.app-mergeDebugResources-34:/values-tl/values-tl.xml",
+            "outputFile": "com.example.cliniq.app-mergeDebugResources-35:/values-tl/values-tl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\march\\.gradle\\caches\\9.3.0\\transforms\\cbc8a58ab49a669cb595d5cf22a2f8b2\\workspace\\transformed\\core-1.13.1\\res\\values-tl\\values-tl.xml",

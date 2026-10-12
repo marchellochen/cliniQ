@@ -42,6 +42,7 @@
         <activity android:name="com.example.cliniq.TicketActivity" />
         <activity android:name="com.example.cliniq.PrescriptionActivity" />
         <activity android:name="com.example.cliniq.PharmacyActivity" />
+        <activity android:name="com.example.cliniq.HistoryActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

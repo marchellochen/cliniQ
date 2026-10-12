@@ -10,6 +10,7 @@ import com.example.cliniq.databinding.ActivityDoctorsBinding
 import com.example.cliniq.databinding.ItemDoctorBinding
 
 class DoctorsActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityDoctorsBinding.inflate(layoutInflater)
@@ -17,14 +18,21 @@ class DoctorsActivity : BaseActivity() {
         setupBar("Choose a doctor")
 
         binding.rvDoctors.layoutManager = LinearLayoutManager(this)
+
         launchSafely {
-            ClinicRepo.loadDoctors()   // now comes from the doctors table
+            // The doctor list now comes from the doctors table
+            ClinicRepo.loadDoctors()
+
             binding.rvDoctors.adapter = DoctorAdapter(ClinicRepo.doctors) { doctor ->
-                startActivity(Intent(this, FormActivity::class.java).putExtra("doctorId", doctor.id))
+                startActivity(
+                    Intent(this, FormActivity::class.java)
+                        .putExtra("doctorId", doctor.id)
+                )
             }
         }
     }
 }
+
 
 /** Turns the list of doctors into rows (one item_doctor.xml per doctor). */
 class DoctorAdapter(
@@ -35,16 +43,24 @@ class DoctorAdapter(
     class ViewHolder(val binding: ItemDoctorBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(ItemDoctorBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        ViewHolder(
+            ItemDoctorBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false,
+            )
+        )
 
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val d = items[position]
+
         holder.binding.tvInitial.text = d.name.removePrefix("dr. ").first().toString()
         holder.binding.tvName.text = d.name
         holder.binding.tvSpecialty.text = d.specialty
         holder.binding.tvRoom.text = d.room
+
         holder.binding.root.setOnClickListener { onClick(d) }
     }
 }

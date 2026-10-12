@@ -11,7 +11,10 @@ val supabase: SupabaseClient by lazy {
         supabaseUrl = BuildConfig.SUPABASE_URL,
         supabaseKey = BuildConfig.SUPABASE_ANON_KEY,
     ) {
-        install(Auth)       // login, signup, session saved on the device
-        install(Postgrest)  // database queries
+        // Login, signup, and the session saved on the device
+        install(Auth)
+
+        // Database queries
+        install(Postgrest)
     }
 }

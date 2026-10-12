@@ -9,25 +9,39 @@ plugins {
 // Read the Supabase URL + key from local.properties (which Git ignores)
 val localProps = Properties().apply {
     val f = rootProject.file("local.properties")
-    if (f.exists()) f.inputStream().use { load(it) }
+    if (f.exists()) {
+        f.inputStream().use { load(it) }
+    }
 }
 
 android {
     namespace = "com.example.cliniq"
     compileSdk = 36
+
     defaultConfig {
         applicationId = "com.example.cliniq"
-        minSdk = 26          // supabase-kt needs 26+
+        minSdk = 26  // supabase-kt needs 26+
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "SUPABASE_URL", "\"${localProps.getProperty("SUPABASE_URL", "")}\"")
-        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${localProps.getProperty("SUPABASE_ANON_KEY", "")}\"")
+
+        buildConfigField(
+            "String",
+            "SUPABASE_URL",
+            "\"${localProps.getProperty("SUPABASE_URL", "")}\"",
+        )
+        buildConfigField(
+            "String",
+            "SUPABASE_ANON_KEY",
+            "\"${localProps.getProperty("SUPABASE_ANON_KEY", "")}\"",
+        )
     }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -35,15 +49,21 @@ android {
 }
 
 kotlin {
-    compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) }
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
 }
 
 dependencies {
+    // AndroidX and Material
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+
+    // QR code generation and scanning
     implementation("com.google.zxing:core:3.5.3")
     implementation("com.google.android.gms:play-services-code-scanner:16.1.0")
 

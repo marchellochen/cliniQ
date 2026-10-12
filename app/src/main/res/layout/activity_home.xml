@@ -44,11 +44,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="18dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Active queue"
                 android:textColor="@color/teal_dark" />
+
             <TextView
                 android:id="@+id/tvActive"
                 android:layout_width="wrap_content"
@@ -62,10 +64,16 @@
         android:id="@+id/btnBook"
         style="@style/BigButton"
         android:text="Book an appointment" />
+
     <Button
         android:id="@+id/btnTicket"
         style="@style/BigButton"
         android:text="View my ticket" />
+
+    <Button
+        android:id="@+id/btnHistory"
+        style="@style/BigButtonOutlined"
+        android:text="Appointment history" />
 
     <View
         android:layout_width="match_parent"

@@ -1048,6 +1048,7 @@ attr suffixText
 attr suffixTextAppearance
 attr suffixTextColor
 attr suggestionRowLayout
+attr swipeRefreshLayoutProgressSpinnerBackgroundColor
 attr switchMinWidth
 attr switchPadding
 attr switchStyle
@@ -2031,6 +2032,10 @@ color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
+color status_cancelled
+color status_done
+color status_pharmacy
+color status_waiting
 color switch_thumb_disabled_material_dark
 color switch_thumb_disabled_material_light
 color switch_thumb_material_dark
@@ -2928,6 +2933,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable bg_chip
 drawable bg_circle
 drawable bg_circle_mint
 drawable btn_checkbox_checked_mtrl
@@ -3155,6 +3161,7 @@ id browser_actions_menu_items
 id browser_actions_menu_view
 id btnBook
 id btnDone
+id btnHistory
 id btnLogin
 id btnLogout
 id btnNo
@@ -3426,6 +3433,7 @@ id right_side
 id rounded
 id row_index_key
 id rvDoctors
+id rvHistory
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3481,6 +3489,7 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id swipeRefresh
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -3532,19 +3541,25 @@ id transition_transform
 id triangle
 id tvActive
 id tvAhead
+id tvDate
 id tvDoctor
 id tvDoctorInfo
 id tvDoctorName
+id tvEmpty
 id tvGoLogin
 id tvGoSignup
 id tvGreeting
 id tvInitial
 id tvMessage
 id tvName
+id tvPharmacy
 id tvPharmacyNo
+id tvQueue
 id tvQueueNo
 id tvRoom
 id tvSpecialty
+id tvStatus
+id tvSymptoms
 id unchecked
 id uniform
 id unlabeled
@@ -3681,6 +3696,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_doctors
 layout activity_form
+layout activity_history
 layout activity_home
 layout activity_login
 layout activity_pharmacy
@@ -3708,6 +3724,7 @@ layout design_text_input_start_icon
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_doctor
+layout item_history
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -5221,6 +5238,7 @@ styleable State android_id constraints
 styleable StateListDrawable android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable StateListDrawableItem android_drawable
 styleable StateSet defaultState
+styleable SwipeRefreshLayout swipeRefreshLayoutProgressSpinnerBackgroundColor
 styleable SwitchCompat android_textOn android_textOff android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable SwitchMaterial useMaterialThemeColors
 styleable TabItem android_icon android_layout android_text
