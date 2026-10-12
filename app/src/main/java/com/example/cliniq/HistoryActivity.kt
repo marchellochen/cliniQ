@@ -77,23 +77,23 @@ class HistoryAdapter(
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val a = items[position]
+        val appt = items[position]
         val b = holder.binding
-        val doctor = ClinicRepo.doctorFor(a.doctorId)
+        val doctor = ClinicRepo.doctorFor(appt.doctorId)
 
-        b.tvQueue.text = a.queueNo
+        b.tvQueue.text = appt.queueNo
         b.tvDoctor.text = if (doctor != null)
             "${doctor.name} · ${doctor.specialty}"
         else
-            "Doctor #${a.doctorId}"
-        b.tvDate.text = formatDate(a.createdAt)
-        b.tvSymptoms.text = a.symptoms
+            "Doctor #${appt.doctorId}"
+        b.tvDate.text = formatDate(appt.createdAt)
+        b.tvSymptoms.text = appt.symptoms
 
-        b.tvPharmacy.isVisible = a.pharmacyQueueNo != null
-        b.tvPharmacy.text = "Pharmacy queue: ${a.pharmacyQueueNo}"
+        b.tvPharmacy.isVisible = appt.pharmacyQueueNo != null
+        b.tvPharmacy.text = "Pharmacy queue: ${appt.pharmacyQueueNo}"
 
         // Status label and its color
-        val (label, color) = when (a.status) {
+        val (label, color) = when (appt.status) {
             "waiting" -> "Waiting" to R.color.status_waiting
             "awaiting_medicine" -> "Awaiting medicine" to R.color.status_pharmacy
             "completed" -> "Completed" to R.color.status_done

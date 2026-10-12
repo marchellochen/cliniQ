@@ -1299,6 +1299,7 @@ int color cardview_dark_background 0x7f050030
 int color cardview_light_background 0x7f050031
 int color cardview_shadow_end_color 0x7f050032
 int color cardview_shadow_start_color 0x7f050033
+int color cliniq_launcher_background 0x7f05031f
 int color common_google_signin_btn_text_dark 0x7f050034
 int color common_google_signin_btn_text_dark_default 0x7f050035
 int color common_google_signin_btn_text_dark_disabled 0x7f050036
@@ -2943,6 +2944,8 @@ int drawable btn_radio_off_mtrl 0x7f07007f
 int drawable btn_radio_off_to_on_mtrl_animation 0x7f070080
 int drawable btn_radio_on_mtrl 0x7f070081
 int drawable btn_radio_on_to_off_mtrl_animation 0x7f070082
+int drawable cliniq_launcher_foreground 0x7f0700fd
+int drawable cliniq_login_logo 0x7f0700fe
 int drawable common_full_open_on_phone 0x7f070083
 int drawable common_google_signin_btn_icon_dark 0x7f070084
 int drawable common_google_signin_btn_icon_dark_focused 0x7f070085
@@ -3785,6 +3788,8 @@ int layout select_dialog_item_material 0x7f0b0072
 int layout select_dialog_multichoice_material 0x7f0b0073
 int layout select_dialog_singlechoice_material 0x7f0b0074
 int layout support_simple_spinner_dropdown_item 0x7f0b0075
+int mipmap cliniq_launcher 0x7f120000
+int mipmap cliniq_launcher_round 0x7f120001
 int plurals mtrl_badge_content_description 0x7f0d0000
 int string abc_action_bar_home_description 0x7f0e0000
 int string abc_action_bar_up_description 0x7f0e0001
@@ -4524,7 +4529,7 @@ int style Theme_AppCompat_Light_Dialog_MinWidth 0x7f0f0221
 int style Theme_AppCompat_Light_DialogWhenLarge 0x7f0f0222
 int style Theme_AppCompat_Light_NoActionBar 0x7f0f0223
 int style Theme_AppCompat_NoActionBar 0x7f0f0224
-int style Theme_ClinicQueue 0x7f0f0225
+int style Theme_CliniQ 0x7f0f046b
 int style Theme_Design 0x7f0f0226
 int style Theme_Design_BottomSheetDialog 0x7f0f0227
 int style Theme_Design_Light 0x7f0f0228

@@ -13,7 +13,7 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupBar("cliniq", showBack = false)
+        setupBar("cliniQ", showBack = false)
 
         binding.btnBook.setOnClickListener {
             startActivity(Intent(this, DoctorsActivity::class.java))

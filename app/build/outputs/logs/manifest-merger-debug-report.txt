@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-50:12
-INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-50:12
-INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-50:12
-INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-50:12
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-52:12
 MERGED from [androidx.databinding:viewbinding:8.9.1] C:\Users\march\.gradle\caches\9.3.0\transforms\0ef249c9daa9ee9f65e563db2afc4d8b\workspace\transformed\viewbinding-8.9.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\march\.gradle\caches\9.3.0\transforms\35349c30caacb59a93492767e896f9ed\workspace\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\march\.gradle\caches\9.3.0\transforms\033c53e7f011e997e0daa3f4f20fa466\workspace\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
@@ -90,8 +90,8 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Us
 	android:name
 		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:5:9-51
 application
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:7:5-49:19
-INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:7:5-49:19
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:7:5-51:19
+INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:7:5-51:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\march\.gradle\caches\9.3.0\transforms\35349c30caacb59a93492767e896f9ed\workspace\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\march\.gradle\caches\9.3.0\transforms\35349c30caacb59a93492767e896f9ed\workspace\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\march\.gradle\caches\9.3.0\transforms\a5abc25a3f9d8a9d35f579f94701cc76\workspace\transformed\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
@@ -136,58 +136,62 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\march\.gradle\c
 		ADDED from [androidx.core:core:1.13.1] C:\Users\march\.gradle\caches\9.3.0\transforms\cbc8a58ab49a669cb595d5cf22a2f8b2\workspace\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 	android:label
 		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:9:9-41
+	android:roundIcon
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:12:9-58
+	android:icon
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:11:9-47
 	android:allowBackup
 		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:8:9-35
 	android:theme
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:10:9-49
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:10:9-44
 activity#com.example.cliniq.LoginActivity
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:12:9-24:20
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:14:9-26:20
 	android:exported
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:14:13-36
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:16:13-36
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:13:13-42
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:15:13-42
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:16:13-23:29
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:18:13-25:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:18:17-19:65
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:20:17-21:65
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:19:21-62
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:21:21-62
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:21:17-22:71
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:23:17-24:71
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:22:21-68
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:24:21-68
 activity#com.example.cliniq.SignupActivity
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:26:9-27:46
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:28:9-29:46
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:27:13-43
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:29:13-43
 activity#com.example.cliniq.HomeActivity
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:29:9-30:44
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:31:9-32:44
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:30:13-41
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:32:13-41
 activity#com.example.cliniq.DoctorsActivity
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:32:9-33:47
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:34:9-35:47
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:33:13-44
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:35:13-44
 activity#com.example.cliniq.FormActivity
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:35:9-36:44
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:37:9-38:44
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:36:13-41
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:38:13-41
 activity#com.example.cliniq.TicketActivity
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:38:9-39:46
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:40:9-41:46
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:39:13-43
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:41:13-43
 activity#com.example.cliniq.PrescriptionActivity
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:41:9-42:52
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:43:9-44:52
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:42:13-49
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:44:13-49
 activity#com.example.cliniq.PharmacyActivity
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:44:9-45:48
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:46:9-47:48
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:45:13-45
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:47:13-45
 activity#com.example.cliniq.HistoryActivity
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:47:9-48:47
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:49:9-50:47
 	android:name
-		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:48:13-44
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:50:13-44
 uses-sdk
 INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml

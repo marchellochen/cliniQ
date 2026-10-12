@@ -23,9 +23,11 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:extractNativeLibs="false"
+        android:icon="@mipmap/cliniq_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/cliniq_launcher_round"
         android:testOnly="true"
-        android:theme="@style/Theme.ClinicQueue" >
+        android:theme="@style/Theme.CliniQ" >
         <activity
             android:name="com.example.cliniq.LoginActivity"
             android:exported="true" >

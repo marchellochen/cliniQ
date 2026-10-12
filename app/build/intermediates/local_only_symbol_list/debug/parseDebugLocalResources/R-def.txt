@@ -1,6 +1,7 @@
 R_DEF: Internal format may change without notice
 local
 color bg
+color cliniq_launcher_background
 color gray
 color mint
 color scrub_blue
@@ -14,6 +15,8 @@ color white
 drawable bg_chip
 drawable bg_circle
 drawable bg_circle_mint
+drawable cliniq_launcher_foreground
+drawable cliniq_login_logo
 id btnBook
 id btnDone
 id btnHistory
@@ -73,9 +76,11 @@ layout activity_signup
 layout activity_ticket
 layout item_doctor
 layout item_history
+mipmap cliniq_launcher
+mipmap cliniq_launcher_round
 string app_name
 style BigButton
 style BigButtonOutlined
 style Field
 style InfoCard
-style Theme.ClinicQueue
+style Theme.CliniQ

@@ -8,14 +8,12 @@
     android:orientation="vertical"
     android:padding="28dp">
 
-    <TextView
+    <ImageView
         android:layout_width="84dp"
         android:layout_height="84dp"
-        android:background="@drawable/bg_circle"
-        android:gravity="center"
-        android:text="✚"
-        android:textColor="@color/white"
-        android:textSize="40sp" />
+        android:src="@drawable/cliniq_login_logo"
+        android:contentDescription="cliniQ logo"
+        android:scaleType="fitCenter" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,13 +23,6 @@
         android:textColor="@color/teal_dark"
         android:textSize="30sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Skip the waiting room crowd"
-        android:textColor="@color/scrub_blue" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"

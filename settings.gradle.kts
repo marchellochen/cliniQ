@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ClinicQueue"
+rootProject.name = "CliniQ"
 include(":app")
