@@ -2,6 +2,7 @@ R_DEF: Internal format may change without notice
 local
 color bg
 color cliniq_launcher_background
+color danger
 color gray
 color mint
 color scrub_blue
@@ -18,12 +19,12 @@ drawable bg_circle_mint
 drawable cliniq_launcher_foreground
 drawable cliniq_login_logo
 id btnBook
+id btnCancel
 id btnDone
 id btnHistory
 id btnLogin
 id btnLogout
 id btnNo
-id btnScan
 id btnSignup
 id btnSimulate
 id btnSubmit
@@ -80,6 +81,7 @@ mipmap cliniq_launcher
 mipmap cliniq_launcher_round
 string app_name
 style BigButton
+style BigButtonDanger
 style BigButtonOutlined
 style Field
 style InfoCard

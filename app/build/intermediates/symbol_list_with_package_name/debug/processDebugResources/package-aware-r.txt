@@ -1312,6 +1312,7 @@ color common_google_signin_btn_text_light_disabled
 color common_google_signin_btn_text_light_focused
 color common_google_signin_btn_text_light_pressed
 color common_google_signin_btn_tint
+color danger
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
 color design_dark_default_color_background
@@ -3163,12 +3164,12 @@ id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
 id btnBook
+id btnCancel
 id btnDone
 id btnHistory
 id btnLogin
 id btnLogout
 id btnNo
-id btnScan
 id btnSignup
 id btnSimulate
 id btnSubmit
@@ -4269,6 +4270,7 @@ style Base_Widget_MaterialComponents_TextInputEditText
 style Base_Widget_MaterialComponents_TextInputLayout
 style Base_Widget_MaterialComponents_TextView
 style BigButton
+style BigButtonDanger
 style BigButtonOutlined
 style CardView
 style CardView_Dark

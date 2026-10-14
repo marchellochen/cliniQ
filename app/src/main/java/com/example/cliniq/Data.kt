@@ -235,4 +235,25 @@ object ClinicRepo {
         appointment = null
         lastMessage = "Medicine received. Session complete!"
     }
+
+    /** Leaves the queue. Only works while the appointment is still "waiting". */
+    suspend fun cancelAppointment() {
+        val appt = appointment ?: return
+
+        val updated = supabase.from("appointments")
+            .update({ set("status", "cancelled") }) {
+                select()
+                filter {
+                    eq("id", appt.id)
+                    eq("status", "waiting")
+                }
+            }
+            .decodeList<Appointment>()
+
+        if (updated.isEmpty()) error("This appointment can no longer be cancelled")
+
+        appointment = null
+        peopleAhead = 0
+        lastMessage = "Your appointment was cancelled."
+    }
 }

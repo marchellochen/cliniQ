@@ -24,13 +24,6 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="24dp"-->
-<!--        android:text=""-->
-<!--        android:textColor="@color/scrub_blue" />-->
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"
         style="@style/Field"

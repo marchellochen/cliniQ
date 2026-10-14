@@ -82,15 +82,21 @@
                 android:textColor="@color/gray"
                 android:textSize="13sp" />
 
-            <Button
-                android:id="@+id/btnScan"
-                style="@style/BigButton"
-                android:text="Scan QR to end session" />
+            <!-- Button to open Google Lens Scanner-->
+<!--            <Button-->
+<!--                android:id="@+id/btnScan"-->
+<!--                style="@style/BigButton"-->
+<!--                android:text="Scan QR to end session" />-->
 
             <Button
                 android:id="@+id/btnSimulate"
                 style="@style/BigButtonOutlined"
                 android:text="Simulate scan (demo)" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                style="@style/BigButtonDanger"
+                android:text="Cancel appointment" />
         </LinearLayout>
     </ScrollView>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -8,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.cliniq.databinding.ActivityTicketBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -84,12 +85,28 @@ class TicketActivity : BaseActivity() {
             }
         }
 
-        binding.btnScan.setOnClickListener {
-            scanQr(
-                this,
-                { check(it) },
-                { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() },
-            )
+        // Button to open Google Lens Scanner
+//        binding.btnScan.setOnClickListener {
+//            scanQr(
+//                this,
+//                { check(it) },
+//                { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() },
+//            )
+//        }
+
+        binding.btnCancel.setOnClickListener {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Cancel appointment?")
+                .setMessage("You'll lose your place in the queue (${appt.queueNo}).")
+                .setNegativeButton("Keep it", null)
+                .setPositiveButton("Cancel appointment") { _, _ ->
+                    binding.btnCancel.isEnabled = false
+                    launchSafely(onDone = { binding.btnCancel.isEnabled = true }) {
+                        ClinicRepo.cancelAppointment()
+                        goHome()
+                    }
+                }
+                .show()
         }
 
         // Demo only: you can't scan your own screen, so this fakes a successful scan

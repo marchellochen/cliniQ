@@ -1311,6 +1311,7 @@ int color common_google_signin_btn_text_light_disabled 0x7f05003b
 int color common_google_signin_btn_text_light_focused 0x7f05003c
 int color common_google_signin_btn_text_light_pressed 0x7f05003d
 int color common_google_signin_btn_tint 0x7f05003e
+int color danger 0x7f050320
 int color design_bottom_navigation_shadow_color 0x7f05003f
 int color design_box_stroke_color 0x7f050040
 int color design_dark_default_color_background 0x7f050041
@@ -3162,12 +3163,12 @@ int id browser_actions_menu_item_text 0x7f08005c
 int id browser_actions_menu_items 0x7f08005d
 int id browser_actions_menu_view 0x7f08005e
 int id btnBook 0x7f08005f
+int id btnCancel 0x7f080203
 int id btnDone 0x7f080060
 int id btnHistory 0x7f0801fa
 int id btnLogin 0x7f080061
 int id btnLogout 0x7f080062
 int id btnNo 0x7f080063
-int id btnScan 0x7f080064
 int id btnSignup 0x7f080065
 int id btnSimulate 0x7f080066
 int id btnSubmit 0x7f080067
@@ -4268,6 +4269,7 @@ int style Base_Widget_MaterialComponents_TextInputEditText 0x7f0f011c
 int style Base_Widget_MaterialComponents_TextInputLayout 0x7f0f011d
 int style Base_Widget_MaterialComponents_TextView 0x7f0f011e
 int style BigButton 0x7f0f011f
+int style BigButtonDanger 0x7f0f046c
 int style BigButtonOutlined 0x7f0f0120
 int style CardView 0x7f0f0121
 int style CardView_Dark 0x7f0f0122
