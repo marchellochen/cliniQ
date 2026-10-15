@@ -48,5 +48,8 @@
 
         <activity
             android:name=".HistoryActivity" />
+
+        <activity
+            android:name=".ProfileActivity" />
     </application>
 </manifest>

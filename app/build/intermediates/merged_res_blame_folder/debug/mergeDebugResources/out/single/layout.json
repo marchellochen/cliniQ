@@ -8,6 +8,14 @@
         "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\layout\\activity_history.xml"
     },
     {
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-36:\\layout\\activity_profile.xml",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\layout\\activity_profile.xml"
+    },
+    {
+        "merged": "com.example.cliniq.app-mergeDebugResources-36:/layout/activity_home.xml",
+        "source": "com.example.cliniq.app-main-39:/layout/activity_home.xml"
+    },
+    {
         "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-36:\\layout\\activity_prescription.xml",
         "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\layout\\activity_prescription.xml"
     },
@@ -28,16 +36,8 @@
         "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\layout\\activity_home.xml"
     },
     {
-        "merged": "com.example.cliniq.app-mergeDebugResources-36:/layout/activity_ticket.xml",
-        "source": "com.example.cliniq.app-main-39:/layout/activity_ticket.xml"
-    },
-    {
         "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-36:\\layout\\item_history.xml",
         "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\layout\\item_history.xml"
-    },
-    {
-        "merged": "com.example.cliniq.app-mergeDebugResources-36:/layout/activity_login.xml",
-        "source": "com.example.cliniq.app-main-39:/layout/activity_login.xml"
     },
     {
         "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-mergeDebugResources-36:\\layout\\activity_form.xml",

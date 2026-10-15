@@ -35,6 +35,10 @@ class HomeActivity : BaseActivity() {
             startActivity(Intent(this, HistoryActivity::class.java))
         }
 
+        binding.ivProfile.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
+
         binding.btnLogout.setOnClickListener {
             launchSafely {
                 ClinicRepo.logout()

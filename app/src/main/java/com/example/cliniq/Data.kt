@@ -28,9 +28,13 @@ data class Doctor(
 data class Profile(
     val id: String? = null,
     @SerialName("full_name") val fullName: String? = null,
-    val age: Int? = null,
-    val allergies: String? = null,
+    @SerialName("date_of_birth") val dateOfBirth: String? = null,
+    val phone: String? = null,
+    val gender: String? = null,
     @SerialName("blood_type") val bloodType: String? = null,
+    val allergies: String? = null,
+    val medications: String? = null,
+    val conditions: String? = null,
 )
 
 @Serializable
@@ -139,6 +143,25 @@ object ClinicRepo {
             ?: Profile(id = id)
     }
 
+    suspend fun saveProfile(updated: Profile) {
+        val id = uid()
+
+        supabase.from("profiles").update({
+            set("full_name", updated.fullName)
+            set("date_of_birth", updated.dateOfBirth)
+            set("phone", updated.phone)
+            set("gender", updated.gender)
+            set("blood_type", updated.bloodType)
+            set("allergies", updated.allergies)
+            set("medications", updated.medications)
+            set("conditions", updated.conditions)
+        }) {
+            filter { eq("id", id) }
+        }
+
+        profile = updated
+    }
+
     /** The patient's current queue entry (waiting for the doctor, or waiting for medicine). */
     private suspend fun loadActive() {
         val id = uid()
@@ -186,18 +209,18 @@ object ClinicRepo {
         doctor: Doctor,
         symptoms: String,
         duration: String,
-        age: Int,
+        dateOfBirth: String?,
         allergies: String,
     ) {
         val id = uid()
 
         supabase.from("profiles").update({
-            set("age", age)
+            set("date_of_birth",dateOfBirth)
             set("allergies", allergies)
         }) {
             filter { eq("id", id) }
         }
-        profile = profile.copy(age = age, allergies = allergies)
+        profile = profile.copy(dateOfBirth = dateOfBirth, allergies = allergies)
 
         // The database hands out the queue number (see book_appointment in SQL)
         val appt = supabase.postgrest.rpc("book_appointment", buildJsonObject {

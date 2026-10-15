@@ -1,9 +1,5 @@
 [
     {
-        "merged": "com.example.cliniq.app-debug-37:/layout_activity_ticket.xml.flat",
-        "source": "com.example.cliniq.app-main-39:/layout/activity_ticket.xml"
-    },
-    {
         "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\mipmap-mdpi_cliniq_launcher.webp.flat",
         "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\mipmap-mdpi\\cliniq_launcher.webp"
     },
@@ -32,12 +28,12 @@
         "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\mipmap-xxhdpi\\cliniq_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\drawable_bg_chip.xml.flat",
-        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\drawable\\bg_chip.xml"
+        "merged": "com.example.cliniq.app-debug-37:/layout_activity_home.xml.flat",
+        "source": "com.example.cliniq.app-main-39:/layout/activity_home.xml"
     },
     {
-        "merged": "com.example.cliniq.app-debug-37:/layout_activity_login.xml.flat",
-        "source": "com.example.cliniq.app-main-39:/layout/activity_login.xml"
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\drawable_bg_chip.xml.flat",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\drawable\\bg_chip.xml"
     },
     {
         "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\mipmap-hdpi_cliniq_launcher.webp.flat",
@@ -68,20 +64,28 @@
         "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\layout\\activity_home.xml"
     },
     {
-        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\mipmap-xxxhdpi_cliniq_launcher.webp.flat",
-        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\mipmap-xxxhdpi\\cliniq_launcher.webp"
+        "merged": "com.example.cliniq.app-debug-37:/drawable_ic_person.xml.flat",
+        "source": "com.example.cliniq.app-main-39:/drawable/ic_person.xml"
     },
     {
-        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\mipmap-hdpi_cliniq_launcher_round.webp.flat",
-        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\mipmap-hdpi\\cliniq_launcher_round.webp"
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\mipmap-xxxhdpi_cliniq_launcher.webp.flat",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\mipmap-xxxhdpi\\cliniq_launcher.webp"
     },
     {
         "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\layout_activity_form.xml.flat",
         "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\layout\\activity_form.xml"
     },
     {
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\mipmap-hdpi_cliniq_launcher_round.webp.flat",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\mipmap-hdpi\\cliniq_launcher_round.webp"
+    },
+    {
         "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\layout_item_history.xml.flat",
         "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\layout\\item_history.xml"
+    },
+    {
+        "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\layout_activity_profile.xml.flat",
+        "source": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-main-39:\\layout\\activity_profile.xml"
     },
     {
         "merged": "C:\\Users\\march\\.gradle\\daemon\\9.3.0\\com.example.cliniq.app-debug-37:\\layout_activity_login.xml.flat",

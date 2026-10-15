@@ -30,6 +30,11 @@
         <item name="cursorColor">@color/teal</item>
         <item name="cursorErrorColor">@color/teal</item>
     </style>
+    <style name="FieldDropdown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
     <style name="InfoCard" parent="Widget.MaterialComponents.CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

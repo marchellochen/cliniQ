@@ -2991,6 +2991,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_person
 drawable ic_search_black_24
 drawable indeterminate_static
 drawable m3_avd_hide_password
@@ -3116,6 +3117,8 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id actBloodType
+id actGender
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -3170,6 +3173,7 @@ id btnHistory
 id btnLogin
 id btnLogout
 id btnNo
+id btnSave
 id btnSignup
 id btnSimulate
 id btnSubmit
@@ -3248,12 +3252,15 @@ id endToStart
 id enterAlways
 id enterAlwaysCollapsed
 id escape
-id etAge
 id etAllergies
+id etConditions
+id etDob
 id etDuration
 id etEmail
+id etMedications
 id etName
 id etPassword
+id etPhone
 id etSymptoms
 id exitUntilCollapsed
 id expand_activities_button
@@ -3301,11 +3308,13 @@ id inward
 id is_pooling_container_tag
 id italic
 id item_touch_helper_previous_elevation
+id ivProfile
 id ivQr
 id jumpToEnd
 id jumpToStart
 id labeled
 id layout
+id layoutDob
 id left
 id leftToRight
 id legacy
@@ -3705,6 +3714,7 @@ layout activity_home
 layout activity_login
 layout activity_pharmacy
 layout activity_prescription
+layout activity_profile
 layout activity_signup
 layout activity_ticket
 layout browser_actions_context_menu_page
@@ -4276,6 +4286,7 @@ style CardView
 style CardView_Dark
 style CardView_Light
 style Field
+style FieldDropdown
 style InfoCard
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Animation

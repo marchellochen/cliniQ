@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-52:12
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:2:1-55:12
 MERGED from [androidx.databinding:viewbinding:8.9.1] C:\Users\march\.gradle\caches\9.3.0\transforms\0ef249c9daa9ee9f65e563db2afc4d8b\workspace\transformed\viewbinding-8.9.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\march\.gradle\caches\9.3.0\transforms\35349c30caacb59a93492767e896f9ed\workspace\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\march\.gradle\caches\9.3.0\transforms\033c53e7f011e997e0daa3f4f20fa466\workspace\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
@@ -90,8 +90,8 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Us
 	android:name
 		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:5:9-51
 application
-ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:7:5-51:19
-INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:7:5-51:19
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:7:5-54:19
+INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:7:5-54:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\march\.gradle\caches\9.3.0\transforms\35349c30caacb59a93492767e896f9ed\workspace\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\march\.gradle\caches\9.3.0\transforms\35349c30caacb59a93492767e896f9ed\workspace\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\march\.gradle\caches\9.3.0\transforms\a5abc25a3f9d8a9d35f579f94701cc76\workspace\transformed\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
@@ -192,6 +192,10 @@ activity#com.example.cliniq.HistoryActivity
 ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:49:9-50:47
 	android:name
 		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:50:13-44
+activity#com.example.cliniq.ProfileActivity
+ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:52:9-53:47
+	android:name
+		ADDED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml:53:13-44
 uses-sdk
 INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\march\AndroidStudioProjects\CliniQ\app\src\main\AndroidManifest.xml

@@ -23,17 +23,25 @@ class FormActivity : BaseActivity() {
         binding.tvDoctor.text = "Seeing ${doctor.name}"
 
         // Pre-fill from the profile row in Supabase
-        binding.etAge.setText(ClinicRepo.profile.age?.toString().orEmpty())
+        var dob: String? = ClinicRepo.profile.dateOfBirth
+        binding.etDob.setText(formatDob(dob))
         binding.etAllergies.setText(ClinicRepo.profile.allergies.orEmpty())
 
+        binding.etDob.setOnClickListener {
+            pickDob(dob) { picked ->
+                dob = picked
+                binding.etDob.setText(formatDob(picked))
+            }
+        }
+
         binding.btnSubmit.setOnClickListener {
-            val age = binding.etAge.text.toString().trim().toIntOrNull()
+            val dateOfBirth = dob
             val symptoms = binding.etSymptoms.text.toString().trim()
 
-            if (age == null || symptoms.isEmpty()) {
+            if (dateOfBirth == null || symptoms.isEmpty()) {
                 Toast.makeText(
                     this,
-                    "Please fill in age and your health problem",
+                    "Please fill in your date of birth and your health problem",
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
@@ -46,7 +54,7 @@ class FormActivity : BaseActivity() {
                     doctor,
                     symptoms,
                     binding.etDuration.text.toString().trim(),
-                    age,
+                    dateOfBirth,
                     binding.etAllergies.text.toString().trim(),
                 )
                 startActivity(Intent(this, TicketActivity::class.java))

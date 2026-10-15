@@ -18,6 +18,9 @@ drawable bg_circle
 drawable bg_circle_mint
 drawable cliniq_launcher_foreground
 drawable cliniq_login_logo
+drawable ic_person
+id actBloodType
+id actGender
 id btnBook
 id btnCancel
 id btnDone
@@ -25,6 +28,7 @@ id btnHistory
 id btnLogin
 id btnLogout
 id btnNo
+id btnSave
 id btnSignup
 id btnSimulate
 id btnSubmit
@@ -33,14 +37,19 @@ id btnYes
 id cardActive
 id cardMessage
 id emailLayout
-id etAge
 id etAllergies
+id etConditions
+id etDob
 id etDuration
 id etEmail
+id etMedications
 id etName
 id etPassword
+id etPhone
 id etSymptoms
+id ivProfile
 id ivQr
+id layoutDob
 id passwordLayout
 id rvDoctors
 id rvHistory
@@ -73,6 +82,7 @@ layout activity_home
 layout activity_login
 layout activity_pharmacy
 layout activity_prescription
+layout activity_profile
 layout activity_signup
 layout activity_ticket
 layout item_doctor
@@ -84,5 +94,6 @@ style BigButton
 style BigButtonDanger
 style BigButtonOutlined
 style Field
+style FieldDropdown
 style InfoCard
 style Theme.CliniQ
