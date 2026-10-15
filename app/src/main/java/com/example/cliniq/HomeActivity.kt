@@ -15,6 +15,12 @@ class HomeActivity : BaseActivity() {
         setContentView(binding.root)
         setupBar("cliniQ", showBack = false)
 
+        supportActionBar?.apply {
+            setDisplayShowTitleEnabled(false)   // hide the plain-text title
+            setDisplayShowCustomEnabled(true)
+            setCustomView(R.layout.actionbar_logo)
+        }
+
         binding.btnBook.setOnClickListener {
             startActivity(Intent(this, DoctorsActivity::class.java))
         }
