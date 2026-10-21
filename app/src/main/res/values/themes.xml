@@ -5,6 +5,28 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/scrub_blue</item>
         <item name="android:windowBackground">@color/bg</item>
+
+        <!-- Action bar that blends into the page -->
+        <item name="actionBarStyle">@style/Widget.CliniQ.ActionBar</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.CliniQ.ActionBar</item>
+        <item name="android:statusBarColor">@color/bg</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Widget.CliniQ.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@color/bg</item>
+        <item name="elevation">0dp</item>
+        <item name="titleTextStyle">@style/TextAppearance.CliniQ.ActionBarTitle</item>
+    </style>
+
+    <style name="ThemeOverlay.CliniQ.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!-- Colors the back arrow -->
+        <item name="colorControlNormal">@color/teal_dark</item>
+    </style>
+
+    <style name="TextAppearance.CliniQ.ActionBarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/teal_dark</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- Reusable styles: apply with style="@style/BigButton" etc. -->
