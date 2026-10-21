@@ -42,6 +42,15 @@ android {
         buildConfig = true
     }
 
+    buildTypes {
+        create("staging") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".test"
+            versionNameSuffix = "-test"
+            matchingFallbacks += listOf("debug")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
