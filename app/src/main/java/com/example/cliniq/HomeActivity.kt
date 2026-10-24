@@ -1,13 +1,26 @@
 package com.example.cliniq
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.core.view.isVisible
+import androidx.activity.OnBackPressedCallback
+import androidx.viewpager2.widget.ViewPager2
 import com.example.cliniq.databinding.ActivityHomeBinding
+import kotlin.math.abs
 
+/**
+ * The main screen after login: a swipeable pager with a bottom bar.
+ * (Still called HomeActivity so Login, Signup and goHome() keep working.)
+ */
 class HomeActivity : BaseActivity() {
 
     private lateinit var binding: ActivityHomeBinding
+
+    // Same order as the pages in MainPagerAdapter
+    private val tabs = listOf(
+        R.id.nav_home,
+        R.id.nav_appointments,
+        R.id.nav_history,
+        R.id.nav_profile,
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,74 +34,40 @@ class HomeActivity : BaseActivity() {
             setCustomView(R.layout.actionbar_logo)
         }
 
-        binding.btnBook.setOnClickListener {
-            startActivity(Intent(this, DoctorsActivity::class.java))
+        binding.pager.adapter = MainPagerAdapter(this)
+        binding.pager.offscreenPageLimit = tabs.size - 1   // keep every tab alive
+
+        // Tap on the bottom bar -> change page
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            val page = tabs.indexOf(item.itemId)
+
+            // A swipe already moved the pager; only react to real taps
+            if (page != binding.pager.currentItem) {
+                val smooth = abs(page - binding.pager.currentItem) == 1
+                binding.pager.setCurrentItem(page, smooth)
+            }
+            true
         }
 
-        binding.btnTicket.setOnClickListener {
-            val appt = ClinicRepo.appointment ?: return@setOnClickListener
-
-            // Patients waiting for medicine go to the pharmacy screen, everyone else to the ticket
-            val target = if (appt.status == "awaiting_medicine")
-                PharmacyActivity::class.java
-            else
-                TicketActivity::class.java
-
-            startActivity(Intent(this, target))
-        }
-
-        binding.btnHistory.setOnClickListener {
-            startActivity(Intent(this, HistoryActivity::class.java))
-        }
-
-        binding.ivProfile.setOnClickListener {
-            startActivity(Intent(this, ProfileActivity::class.java))
-        }
-
-        binding.btnLogout.setOnClickListener {
-            launchSafely {
-                ClinicRepo.logout()
-                startActivity(
-                    Intent(this, LoginActivity::class.java)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                )
+        // On any other tab, Back goes to Home first (and only then leaves the app)
+        val backToHome = object : OnBackPressedCallback(false) {
+            override fun handleOnBackPressed() {
+                binding.pager.currentItem = 0
             }
         }
+        onBackPressedDispatcher.addCallback(this, backToHome)
+
+        // Swipe -> update the bottom bar
+        binding.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                binding.bottomNav.selectedItemId = tabs[position]
+                backToHome.isEnabled = position != 0
+            }
+        })
     }
 
-    // Reload from Supabase every time the screen becomes visible
-    override fun onResume() {
-        super.onResume()
-        render()
-        launchSafely(onDone = { render() }) {
-            ClinicRepo.refreshHome()
-        }
-    }
-
-    private fun render() {
-        binding.tvGreeting.text = "Hello, ${ClinicRepo.displayName}"
-
-        val message = ClinicRepo.lastMessage
-        binding.cardMessage.isVisible = message != null
-        binding.tvMessage.text = message
-
-        val appt = ClinicRepo.appointment
-        binding.cardActive.isVisible = appt != null
-        binding.btnTicket.isVisible = appt != null
-        binding.btnBook.isVisible = appt == null
-
-        if (appt != null) {
-            val inPharmacy = appt.status == "awaiting_medicine"
-
-            binding.tvActive.text = if (inPharmacy)
-                "Pharmacy ${appt.pharmacyQueueNo}"
-            else
-                "${appt.queueNo} · ${ClinicRepo.doctorFor(appt.doctorId)?.name.orEmpty()}"
-
-            binding.btnTicket.text = if (inPharmacy)
-                "View pharmacy queue"
-            else
-                "View my ticket"
-        }
+    /** Lets a fragment jump to another tab. */
+    fun showTab(itemId: Int) {
+        binding.bottomNav.selectedItemId = itemId
     }
 }

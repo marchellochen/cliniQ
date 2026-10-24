@@ -3,34 +3,52 @@ package com.example.cliniq
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cliniq.databinding.ActivityHistoryBinding
+import com.example.cliniq.databinding.FragmentHistoryBinding
 import com.example.cliniq.databinding.ItemHistoryBinding
 import java.time.OffsetDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-class HistoryActivity : BaseActivity() {
+class HistoryFragment : Fragment() {
 
-    private lateinit var binding: ActivityHistoryBinding
+    private var _binding: FragmentHistoryBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityHistoryBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setupBar("Appointment history")
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        binding.rvHistory.layoutManager = LinearLayoutManager(this)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.rvHistory.layoutManager = LinearLayoutManager(requireContext())
 
         binding.swipeRefresh.setColorSchemeResources(R.color.teal)
         binding.swipeRefresh.setOnRefreshListener { load() }
-        binding.swipeRefresh.isRefreshing = true
+    }
 
+    // Reload every time this tab becomes visible, so new or cancelled bookings show up
+    override fun onResume() {
+        super.onResume()
+        binding.swipeRefresh.isRefreshing = true
         load()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun load() = launchSafely(
