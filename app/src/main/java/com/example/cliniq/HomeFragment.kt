@@ -31,19 +31,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.btnTicket.setOnClickListener {
-            val appt = ClinicRepo.appointment ?: return@setOnClickListener
-
-            // Patients waiting for medicine go to the pharmacy screen, everyone else to the ticket
-            val target = if (appt.status == "awaiting_medicine")
-                PharmacyActivity::class.java
-            else
-                TicketActivity::class.java
-
-            startActivity(Intent(requireContext(), target))
-        }
-
-        binding.btnHistory.setOnClickListener {
-            (requireActivity() as HomeActivity).showTab(R.id.nav_history)
+            (requireActivity() as HomeActivity).showTab(R.id.nav_appointments)
         }
 
         binding.btnLogout.setOnClickListener {

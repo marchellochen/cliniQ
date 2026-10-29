@@ -38,13 +38,7 @@
             android:name=".FormActivity" />
 
         <activity
-            android:name=".TicketActivity" />
-
-        <activity
             android:name=".PrescriptionActivity" />
-
-        <activity
-            android:name=".PharmacyActivity" />
 
     </application>
 </manifest>

@@ -11,7 +11,7 @@ class MainPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activi
 
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> HomeFragment()
-        1 -> PlaceholderFragment.newInstance("Appointment")
+        1 -> AppointmentFragment()
         2 -> HistoryFragment()
         else -> ProfileFragment()
     }

@@ -24,8 +24,7 @@ class PrescriptionActivity : BaseActivity() {
 
             launchSafely(onDone = { setBusy(false) }) {
                 ClinicRepo.finishSession(needsMedicine = true)
-                startActivity(Intent(this, PharmacyActivity::class.java))
-                finish()
+                goHome(R.id.nav_appointments)
             }
         }
 

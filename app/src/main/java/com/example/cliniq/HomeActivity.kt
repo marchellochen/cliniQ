@@ -3,6 +3,7 @@ package com.example.cliniq
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.viewpager2.widget.ViewPager2
+import android.content.Intent
 import com.example.cliniq.databinding.ActivityHomeBinding
 import kotlin.math.abs
 
@@ -69,5 +70,18 @@ class HomeActivity : BaseActivity() {
     /** Lets a fragment jump to another tab. */
     fun showTab(itemId: Int) {
         binding.bottomNav.selectedItemId = itemId
+    }
+
+    // Another screen asked for a specific tab (see goHome in BaseActivity)
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+
+        val tab = intent.getIntExtra(EXTRA_TAB, 0)
+        showTab(if (tab != 0) tab else R.id.nav_home)
+    }
+
+    companion object {
+        const val EXTRA_TAB = "tab"
     }
 }

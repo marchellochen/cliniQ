@@ -47,12 +47,13 @@ open class BaseActivity : AppCompatActivity() {
         return true
     }
 
-    /** Jump back to Home and close everything stacked above it. */
-    protected fun goHome() {
-        startActivity(
-            Intent(this, HomeActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        )
+    /** Jump back to Home (or to the given tab) and close everything stacked above it. */
+    protected fun goHome(tab: Int? = null) {
+        val intent = Intent(this, HomeActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        if (tab != null) intent.putExtra(HomeActivity.EXTRA_TAB, tab)
+
+        startActivity(intent)
         finish()
     }
 }

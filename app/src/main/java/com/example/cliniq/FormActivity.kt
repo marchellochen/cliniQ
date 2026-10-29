@@ -57,8 +57,7 @@ class FormActivity : BaseActivity() {
                     dateOfBirth,
                     binding.etAllergies.text.toString().trim(),
                 )
-                startActivity(Intent(this, TicketActivity::class.java))
-                finish()
+                goHome(R.id.nav_appointments)
             }
         }
     }
