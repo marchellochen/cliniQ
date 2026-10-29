@@ -33,16 +33,6 @@ class HomeFragment : Fragment() {
         binding.btnTicket.setOnClickListener {
             (requireActivity() as HomeActivity).showTab(R.id.nav_appointments)
         }
-
-        binding.btnLogout.setOnClickListener {
-            launchSafely {
-                ClinicRepo.logout()
-                startActivity(
-                    Intent(requireContext(), LoginActivity::class.java)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                )
-            }
-        }
     }
 
     // Reload from Supabase every time this tab becomes visible

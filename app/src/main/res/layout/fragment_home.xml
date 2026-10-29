@@ -84,14 +84,4 @@
         android:id="@+id/btnTicket"
         style="@style/BigButton"
         android:text="View my ticket" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <Button
-        android:id="@+id/btnLogout"
-        style="@style/BigButtonOutlined"
-        android:text="Log out" />
 </LinearLayout>
