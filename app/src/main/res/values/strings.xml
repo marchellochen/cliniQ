@@ -1,1 +1,3 @@
-<resources><string name="app_name">CliniQ</string></resources>
+<resources>
+    <string name="app_name">CliniQ</string>
+</resources>
