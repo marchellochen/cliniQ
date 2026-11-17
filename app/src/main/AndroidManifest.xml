@@ -35,6 +35,10 @@
             android:name=".DoctorsActivity" />
 
         <activity
+            android:name=".finddoctor.FindDoctorActivity"
+            android:theme="@style/Theme.CliniQ.Compose" />
+
+        <activity
             android:name=".FormActivity" />
 
         <activity

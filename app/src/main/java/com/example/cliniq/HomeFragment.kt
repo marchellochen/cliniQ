@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.cliniq.databinding.FragmentHomeBinding
+import com.example.cliniq.finddoctor.FindDoctorActivity
 
 class HomeFragment : Fragment() {
 
@@ -27,7 +28,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnBook.setOnClickListener {
-            startActivity(Intent(requireContext(), DoctorsActivity::class.java))
+            startActivity(Intent(requireContext(), FindDoctorActivity::class.java))
         }
 
         binding.btnTicket.setOnClickListener {

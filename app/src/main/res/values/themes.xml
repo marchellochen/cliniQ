@@ -13,6 +13,11 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="Theme.CliniQ.Compose" parent="Theme.CliniQ">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="Widget.CliniQ.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
         <item name="background">@color/bg</item>
         <item name="elevation">0dp</item>

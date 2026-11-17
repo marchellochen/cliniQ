@@ -22,6 +22,9 @@ data class Doctor(
     val name: String,
     val specialty: String,
     val room: String,
+    @SerialName("photo_url") val photoUrl: String? = null,
+    val bio: String? = null,
+    @SerialName("experience_years") val experienceYears: Int? = null,
 )
 
 @Serializable
