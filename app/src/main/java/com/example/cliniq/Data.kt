@@ -1,9 +1,10 @@
+
 package com.example.cliniq
 
-import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.auth.*
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.postgrest.from
-import io.github.jan.supabase.postgrest.postgrest
+import io.github.jan.supabase.postgrest.*
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -55,7 +56,41 @@ data class Appointment(
 }
 
 
-/** All Supabase calls live here, so the screens never talk to the database directly. */
+// ---------------------------------------------------------------------------
+// Appointment Booking Request
+// Additional model for the new scheduled Appointment Booking feature.
+// ---------------------------------------------------------------------------
+
+@Serializable
+data class AppointmentBookingRequest(
+    @SerialName("doctor_id")
+    val doctorId: Int,
+
+    @SerialName("appointment_date")
+    val appointmentDate: String,
+
+    val session: String,
+
+    @SerialName("payment_method")
+    val paymentMethod: String,
+
+    @SerialName("bpjs_number")
+    val bpjsNumber: String? = null,
+
+    @SerialName("insurance_provider")
+    val insuranceProvider: String? = null,
+
+    @SerialName("insurance_number")
+    val insuranceNumber: String? = null,
+
+    val symptoms: String
+)
+
+
+// ---------------------------------------------------------------------------
+// All Supabase calls live here, so the screens never talk to the database directly.
+// ---------------------------------------------------------------------------
+
 object ClinicRepo {
 
     // ----- Data kept in memory while the app runs -----
@@ -97,11 +132,13 @@ object ClinicRepo {
 
     suspend fun signUp(name: String, email: String, password: String) {
         clear()
+
         supabase.auth.signUpWith(Email) {
             this.email = email
             this.password = password
+
             data = buildJsonObject {
-                // The database trigger copies this into the profiles table
+                // The database trigger copies this into the profiles table.
                 put("full_name", name)
             }
         }
@@ -109,6 +146,7 @@ object ClinicRepo {
 
     suspend fun signIn(email: String, password: String) {
         clear()
+
         supabase.auth.signInWith(Email) {
             this.email = email
             this.password = password
@@ -131,14 +169,21 @@ object ClinicRepo {
 
     suspend fun loadDoctors() {
         doctors = supabase.from("doctors")
-            .select { order("id", Order.ASCENDING) }
+            .select {
+                order("id", Order.ASCENDING)
+            }
             .decodeList<Doctor>()
     }
 
     private suspend fun loadProfile() {
         val id = uid()
+
         profile = supabase.from("profiles")
-            .select { filter { eq("id", id) } }
+            .select {
+                filter {
+                    eq("id", id)
+                }
+            }
             .decodeSingleOrNull<Profile>()
             ?: Profile(id = id)
     }
@@ -156,15 +201,19 @@ object ClinicRepo {
             set("medications", updated.medications)
             set("conditions", updated.conditions)
         }) {
-            filter { eq("id", id) }
+            filter {
+                eq("id", id)
+            }
         }
 
         profile = updated
     }
 
+
     /** The patient's current queue entry (waiting for the doctor, or waiting for medicine). */
     private suspend fun loadActive() {
         val id = uid()
+
         appointment = supabase.from("appointments")
             .select {
                 filter {
@@ -184,19 +233,27 @@ object ClinicRepo {
     }
 
     private suspend fun fetchPeopleAhead(appointmentId: Long): Int =
-        supabase.postgrest.rpc("people_ahead", buildJsonObject {
-            put("p_appointment", appointmentId)
-        }).decodeAs<Int>()
+        supabase.postgrest.rpc(
+            "people_ahead",
+            buildJsonObject {
+                put("p_appointment", appointmentId)
+            }
+        ).decodeAs<Int>()
+
 
     /** Re-reads the current queue entry. Used by the ticket screen to keep "people ahead" fresh. */
     suspend fun refreshActive() = loadActive()
 
+
     /** Every appointment of the logged-in patient, newest first (RLS limits it to their own rows). */
     suspend fun loadHistory(): List<Appointment> {
         val id = uid()
+
         return supabase.from("appointments")
             .select {
-                filter { eq("user_id", id) }
+                filter {
+                    eq("user_id", id)
+                }
                 order("created_at", Order.DESCENDING)
             }
             .decodeList<Appointment>()
@@ -215,32 +272,45 @@ object ClinicRepo {
         val id = uid()
 
         supabase.from("profiles").update({
-            set("date_of_birth",dateOfBirth)
+            set("date_of_birth", dateOfBirth)
             set("allergies", allergies)
         }) {
-            filter { eq("id", id) }
+            filter {
+                eq("id", id)
+            }
         }
-        profile = profile.copy(dateOfBirth = dateOfBirth, allergies = allergies)
 
-        // The database hands out the queue number (see book_appointment in SQL)
-        val appt = supabase.postgrest.rpc("book_appointment", buildJsonObject {
-            put("p_doctor", doctor.id)
-            put("p_symptoms", symptoms)
-            put("p_duration", duration)
-        }).decodeAs<Appointment>()
+        profile = profile.copy(
+            dateOfBirth = dateOfBirth,
+            allergies = allergies
+        )
+
+        // The database hands out the queue number (see book_appointment in SQL).
+        val appt = supabase.postgrest.rpc(
+            "book_appointment",
+            buildJsonObject {
+                put("p_doctor", doctor.id)
+                put("p_symptoms", symptoms)
+                put("p_duration", duration)
+            }
+        ).decodeAs<Appointment>()
 
         appointment = appt
         lastMessage = null
         peopleAhead = fetchPeopleAhead(appt.id)
     }
 
+
     suspend fun finishSession(needsMedicine: Boolean) {
         val appt = appointment ?: return
 
-        appointment = supabase.postgrest.rpc("finish_session", buildJsonObject {
-            put("p_appointment", appt.id)
-            put("p_needs_medicine", needsMedicine)
-        }).decodeAs<Appointment>()
+        appointment = supabase.postgrest.rpc(
+            "finish_session",
+            buildJsonObject {
+                put("p_appointment", appt.id)
+                put("p_needs_medicine", needsMedicine)
+            }
+        ).decodeAs<Appointment>()
 
         if (!needsMedicine) {
             appointment = null
@@ -251,20 +321,27 @@ object ClinicRepo {
     suspend fun completePickup() {
         val appt = appointment ?: return
 
-        supabase.from("appointments").update({ set("status", "completed") }) {
-            filter { eq("id", appt.id) }
+        supabase.from("appointments").update({
+            set("status", "completed")
+        }) {
+            filter {
+                eq("id", appt.id)
+            }
         }
 
         appointment = null
         lastMessage = "Medicine received. Session complete!"
     }
 
+
     /** Leaves the queue. Only works while the appointment is still "waiting". */
     suspend fun cancelAppointment() {
         val appt = appointment ?: return
 
         val updated = supabase.from("appointments")
-            .update({ set("status", "cancelled") }) {
+            .update({
+                set("status", "cancelled")
+            }) {
                 select()
                 filter {
                     eq("id", appt.id)

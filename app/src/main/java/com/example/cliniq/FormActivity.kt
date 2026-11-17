@@ -57,7 +57,7 @@ class FormActivity : BaseActivity() {
                     dateOfBirth,
                     binding.etAllergies.text.toString().trim(),
                 )
-                goHome(R.id.nav_appointments)
+                goHome(R.id.nav_queue)
             }
         }
     }

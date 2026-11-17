@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/mint">
+
+    <!-- SCROLLABLE FORM -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="80dp"
+            android:paddingBottom="20dp">
+
+            <!-- BOOKING INFORMATION -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                app:cardBackgroundColor="@color/login_field_bg"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:padding="8dp"
+                        app:srcCompat="@drawable/ic_nav_appointment"
+                        app:tint="@color/teal" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Instant &amp; Verified Booking"
+                            android:textColor="@color/teal_dark"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Choose your doctor, available date, and consultation session."
+                            android:textColor="@color/gray"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- DOCTOR INFORMATION -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        app:cardBackgroundColor="@color/login_field_bg"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:id="@+id/tvDoctorInitial"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="D"
+                            android:textColor="@color/teal"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SELECTED DOCTOR"
+                            android:textColor="@color/teal"
+                            android:textSize="9sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvDoctorName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Doctor Name"
+                            android:textColor="@color/dark_navy"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:maxLines="2" />
+
+                        <TextView
+                            android:id="@+id/tvDoctorSpecialty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Doctor Specialty"
+                            android:textColor="@color/gray"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tvDoctorRoom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Consultation Room"
+                            android:textColor="@color/gray"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- APPOINTMENT DATE HEADER -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Select Appointment Date"
+                    android:textColor="@color/dark_navy"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvScheduleMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="November 2026"
+                    android:textColor="@color/teal"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <!-- DATE OPTIONS: EXACTLY THREE CARDS -->
+            <LinearLayout
+                android:id="@+id/layoutDateOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/tvSelectedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Selected date"
+                android:textColor="@color/gray"
+                android:textSize="10sp" />
+
+
+            <!-- CONSULTATION SESSION HEADER -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Consultation Session"
+                    android:textColor="@color/dark_navy"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Available sessions"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <!-- SESSION OPTIONS: EQUAL WIDTH -->
+            <LinearLayout
+                android:id="@+id/layoutSessionOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/tvSelectedSession"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Select consultation session"
+                android:textColor="@color/gray"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tvNoSessions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="No consultation sessions available for this date."
+                android:textColor="@color/gray"
+                android:textSize="11sp"
+                android:visibility="gone" />
+
+
+            <!-- PAYMENT METHOD HEADER -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Payment Method"
+                    android:textColor="@color/dark_navy"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPaymentCoverage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select payment method"
+                    android:textColor="@color/teal"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <!-- BPJS CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardBpjs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="13dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/teal"
+                app:strokeWidth="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <RadioButton
+                        android:id="@+id/rbBpjs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/teal" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="BPJS Kesehatan"
+                            android:textColor="@color/dark_navy"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Use your BPJS membership for eligible consultations."
+                            android:textColor="@color/gray"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BPJS"
+                        android:textColor="@color/teal"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- BPJS DETAILS -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layoutBpjsDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/login_field_bg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="BPJS Membership Number"
+                        android:textColor="@color/dark_navy"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etBpjsNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="6dp"
+                        android:backgroundTint="@color/teal"
+                        android:hint="Enter BPJS number"
+                        android:inputType="number"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_navy"
+                        android:textColorHint="@color/gray"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- PERSONAL PAYMENT CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSelfPay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="13dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/login_field_bg"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <RadioButton
+                        android:id="@+id/rbSelfPay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/teal" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Personal / Self-Pay"
+                            android:textColor="@color/dark_navy"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Pay directly at the hospital cashier or through available payment channels."
+                            android:textColor="@color/gray"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- PERSONAL PAYMENT DETAILS -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layoutSelfPayDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/login_field_bg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:text="Payment can be completed at the hospital cashier or using the available payment channels."
+                    android:textColor="@color/dark_navy"
+                    android:textSize="11sp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- PRIVATE INSURANCE CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPrivateInsurance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="13dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/login_field_bg"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <RadioButton
+                        android:id="@+id/rbPrivateInsurance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/teal" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Private Insurance / Corporate"
+                            android:textColor="@color/dark_navy"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Use eligible private insurance or corporate coverage."
+                            android:textColor="@color/gray"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- PRIVATE INSURANCE DETAILS -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layoutInsuranceDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/login_field_bg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Insurance Provider"
+                        android:textColor="@color/dark_navy"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etInsuranceProvider"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="6dp"
+                        android:backgroundTint="@color/teal"
+                        android:hint="Enter insurance provider"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_navy"
+                        android:textColorHint="@color/gray"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Policy / Member Number"
+                        android:textColor="@color/dark_navy"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etInsuranceNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="6dp"
+                        android:backgroundTint="@color/teal"
+                        android:hint="Enter policy or member number"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_navy"
+                        android:textColorHint="@color/gray"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- HEALTH COMPLAINT -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Short Complaint"
+                    android:textColor="@color/dark_navy"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Optional"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Help the doctor understand your initial symptoms before the consultation."
+                android:textColor="@color/gray"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/etSymptoms"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/teal"
+                android:gravity="top|start"
+                android:hint="Example: Mild fever for 2 days, slight cough..."
+                android:inputType="textMultiLine|textCapSentences"
+                android:maxLength="150"
+                android:padding="14dp"
+                android:textColor="@color/dark_navy"
+                android:textColorHint="@color/gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvSymptomsCounter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="0/150"
+                android:textColor="@color/gray"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <!-- FIXED BOTTOM CONFIRMATION -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Payment Method:"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tvSelectedPaymentSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BPJS Kesehatan"
+                    android:textColor="@color/dark_navy"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvSelectedCoverageSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="end"
+                android:text="Enter your BPJS membership number"
+                android:textColor="@color/teal"
+                android:textSize="9sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConfirmAppointment"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:text="Confirm Booking"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:backgroundTint="@color/teal"
+                app:cornerRadius="10dp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

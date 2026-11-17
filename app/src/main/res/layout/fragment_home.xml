@@ -1,87 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:background="@color/mint"
+    android:fillViewport="true"
+    android:clipToPadding="false"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="24dp">
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <!-- GREETING -->
+        <TextView
+            android:id="@+id/tvGreeting"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvGreeting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/teal_dark"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="How can we help you today?"
-                android:textColor="@color/gray" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardMessage"
-        style="@style/InfoCard"
-        android:layout_marginBottom="16dp">
+            android:text="Welcome,"
+            android:textColor="@color/dark_navy"
+            android:textSize="23sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvMessage"
+            android:id="@+id/tvPatientName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="18dp"
-            android:textColor="@color/teal_dark"
+            android:textColor="@color/dark_navy"
+            android:textSize="22sp"
             android:textStyle="bold" />
-    </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardActive"
-        style="@style/InfoCard"
-        android:layout_marginBottom="12dp">
+        <TextView
+            android:id="@+id/tvGreetingSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Wishing you and your loved ones good health."
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
 
+
+        <!-- SEARCH -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSearch"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="18dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="13dp"
+            app:cardElevation="1dp"
+            app:strokeColor="#E0E7EF"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⌕"
+                    android:textColor="@color/teal"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:text="Search doctors, specialties, or services..."
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚕"
+                    android:textColor="@color/teal"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- ACTIVE QUEUE CARD -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardActive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="1dp"
+            app:strokeColor="#E0E7EF"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- QUEUE HEADER -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TODAY'S QUEUE"
+                        android:textColor="@color/teal_dark"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvQueueStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NO ACTIVE QUEUE"
+                        android:textColor="@color/teal_dark"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- QUEUE TITLE -->
+                <TextView
+                    android:id="@+id/tvActive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="No Active Queue"
+                    android:textColor="@color/dark_navy"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- QUEUE DESCRIPTION -->
+                <TextView
+                    android:id="@+id/tvQueueDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="You don't have an active queue number today."
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="3dp" />
+
+                <!-- GET QUEUE NUMBER -->
+                <Button
+                    android:id="@+id/btnBook"
+                    style="@style/BigButton"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/teal"
+                    android:text="Get Queue Number"
+                    android:textAllCaps="false" />
+
+                <!-- VIEW QUEUE -->
+                <Button
+                    android:id="@+id/btnTicket"
+                    style="@style/BigButton"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/teal"
+                    android:text="View Queue"
+                    android:visibility="gone"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- MESSAGE -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+            <TextView
+                android:id="@+id/tvMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="14dp"
+                android:textColor="@color/teal_dark"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- SPECIALTIES HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="18dp">
+            android:layout_marginTop="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Active queue"
-                android:textColor="@color/teal_dark" />
-
-            <TextView
-                android:id="@+id/tvActive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:layout_weight="1"
+                android:text="Medical Specialties"
+                android:textColor="@color/dark_navy"
+                android:textSize="17sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSeeAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="View All"
+                android:textColor="@color/teal"
+                android:textSize="11sp"
+                android:fontFamily="sans-serif-medium"
+                android:clickable="true"
+                android:focusable="true" />
+
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/btnBook"
-        style="@style/BigButton"
-        android:text="Book an appointment" />
 
-    <Button
-        android:id="@+id/btnTicket"
-        style="@style/BigButton"
-        android:text="View my ticket" />
-</LinearLayout>
+        <!-- SPECIALTY DESCRIPTION -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Explore available medical specialties and doctors."
+            android:textColor="@color/gray"
+            android:textSize="11sp" />
+
+
+        <!-- SPECIALTY LIST -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/layoutSpecialties"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+        </HorizontalScrollView>
+
+
+        <!-- EMPTY SPECIALTY -->
+        <TextView
+            android:id="@+id/tvSpecialtyEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="No medical specialties available yet."
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+
+        <!-- UPCOMING APPOINTMENTS -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Upcoming Appointments"
+            android:textColor="@color/dark_navy"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+
+        <!-- EMPTY APPOINTMENT CARD -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="1dp"
+            app:strokeColor="#E0E7EF"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:srcCompat="@drawable/ic_nav_appointment"
+                    android:contentDescription="Appointment"
+                    app:tint="@color/teal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:text="No Upcoming Appointments"
+                    android:textColor="@color/dark_navy"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Your scheduled consultations will appear here once booked."
+                    android:textColor="@color/gray"
+                    android:textSize="11sp"
+                    android:lineSpacingExtra="3dp" />
+
+                <!-- FIND A DOCTOR -->
+                <Button
+                    android:id="@+id/btnFindDoctor"
+                    style="@style/BigButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/teal"
+                    android:text="Find a Doctor"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

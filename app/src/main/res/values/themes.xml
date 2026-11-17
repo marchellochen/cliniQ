@@ -1,67 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- MAIN APP THEME -->
     <style name="Theme.CliniQ" parent="Theme.MaterialComponents.Light.DarkActionBar">
+
         <item name="colorPrimary">@color/teal</item>
         <item name="colorPrimaryVariant">@color/teal_dark</item>
         <item name="colorOnPrimary">@color/white</item>
+
         <item name="colorSecondary">@color/scrub_blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Component Tint -->
+        <item name="colorControlActivated">@color/teal</item>
+
+        <!-- Background -->
         <item name="android:windowBackground">@color/bg</item>
 
-        <!-- Action bar that blends into the page -->
+        <!-- Action Bar -->
         <item name="actionBarStyle">@style/Widget.CliniQ.ActionBar</item>
         <item name="actionBarTheme">@style/ThemeOverlay.CliniQ.ActionBar</item>
+
+        <!-- Status Bar -->
         <item name="android:statusBarColor">@color/bg</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Navigation Bar -->
+        <item name="android:navigationBarColor">@color/bg</item>
+
     </style>
 
-    <style name="Widget.CliniQ.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
-        <item name="background">@color/bg</item>
-        <item name="elevation">0dp</item>
+    <!-- ACTION BAR STYLE -->
+    <style name="Widget.CliniQ.ActionBar"
+        parent="Widget.AppCompat.ActionBar.Solid">
+
+        <item name="background">@color/white</item>
+        <item name="elevation">2dp</item>
         <item name="titleTextStyle">@style/TextAppearance.CliniQ.ActionBarTitle</item>
+
     </style>
 
-    <style name="ThemeOverlay.CliniQ.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
-        <!-- Colors the back arrow -->
-        <item name="colorControlNormal">@color/teal_dark</item>
+    <!-- ACTION BAR ICON AND BACK BUTTON -->
+    <style name="ThemeOverlay.CliniQ.ActionBar"
+        parent="ThemeOverlay.AppCompat.ActionBar">
+
+        <item name="colorControlNormal">@color/teal</item>
+
     </style>
 
-    <style name="TextAppearance.CliniQ.ActionBarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/teal_dark</item>
+    <!-- ACTION BAR TITLE -->
+    <style name="TextAppearance.CliniQ.ActionBarTitle"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+
+        <item name="android:textColor">@color/dark_navy</item>
         <item name="android:textStyle">bold</item>
+
     </style>
 
-    <!-- Reusable styles: apply with style="@style/BigButton" etc. -->
-    <style name="BigButton" parent="Widget.MaterialComponents.Button">
+    <!-- PRIMARY BUTTON -->
+    <style name="BigButton"
+        parent="Widget.MaterialComponents.Button">
+
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">56dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="cornerRadius">14dp</item>
+
     </style>
-    <style name="BigButtonOutlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+
+    <!-- OUTLINED BUTTON -->
+    <style name="BigButtonOutlined"
+        parent="Widget.MaterialComponents.Button.OutlinedButton">
+
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">56dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="cornerRadius">14dp</item>
+
     </style>
+
+    <!-- DANGER BUTTON -->
     <style name="BigButtonDanger" parent="BigButton">
+
         <item name="backgroundTint">@color/danger</item>
+
     </style>
-    <style name="Field" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+    <!-- INPUT FIELD -->
+    <style name="Field"
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="cursorColor">@color/teal</item>
         <item name="cursorErrorColor">@color/teal</item>
+
     </style>
-    <style name="FieldDropdown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+    <!-- DROPDOWN FIELD -->
+    <style name="FieldDropdown"
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">10dp</item>
+
     </style>
-    <style name="InfoCard" parent="Widget.MaterialComponents.CardView">
+
+    <!-- INFORMATION CARD -->
+    <style name="InfoCard"
+        parent="Widget.MaterialComponents.CardView">
+
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="cardBackgroundColor">@color/mint</item>
         <item name="cardCornerRadius">18dp</item>
         <item name="cardElevation">0dp</item>
+
     </style>
+
 </resources>
