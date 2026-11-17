@@ -1,6 +1,5 @@
-﻿package com.example.cliniq
+package com.example.cliniq
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,22 +7,29 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.cliniq.databinding.FragmentQueueBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class QueueFragment : Fragment() {
 
     private var _binding: FragmentQueueBinding? = null
     private val binding get() = _binding!!
 
-    // The QR code is only redrawn when the ticket changes
+    private val viewModel: QueueViewModel by viewModels()
+
+    // The QR code is only redrawn when the token changes
     private var shownQr: String? = null
+
+    private val dateFormat = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,31 +43,34 @@ class QueueFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Pull down to refresh the queue position
+        // Pull down to refresh
         binding.swipeRefresh.setColorSchemeResources(R.color.teal)
         binding.swipeRefresh.setOnRefreshListener {
-            launchSafely(onDone = { binding.swipeRefresh.isRefreshing = false }) {
-                ClinicRepo.refreshActive()
-                render()
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.refresh()
+                binding.swipeRefresh.isRefreshing = false
             }
         }
 
-        // While this tab is the one on screen: show what we have, then re-check
-        // the queue every 10 seconds. It pauses when you leave the tab.
+        // Draw whatever the ViewModel has
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect(::render)
+            }
+        }
+
+        // While this tab is on screen, refresh every 5 seconds.
+        // Stops when the ticket is completed and pauses when the tab is left.
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                render()
                 while (true) {
-                    refreshQuietly()
-                    delay(10_000)
+                    viewModel.refresh()
+                    val status = (viewModel.state.value as? QueueState.Success)
+                        ?.data?.appointment?.status
+                    if (status == "done" || status == "completed") break
+                    delay(5_000)
                 }
             }
-        }
-
-        // Demo only: you can't scan your own screen, so this fakes a successful scan
-        binding.btnSimulate.setOnClickListener {
-            val payload = ClinicRepo.appointment?.qrPayload ?: return@setOnClickListener
-            checkQr(payload)
         }
 
         binding.btnCancel.setOnClickListener {
@@ -75,7 +84,7 @@ class QueueFragment : Fragment() {
                     binding.btnCancel.isEnabled = false
                     launchSafely(onDone = { binding.btnCancel.isEnabled = true }) {
                         ClinicRepo.cancelAppointment()
-                        render()
+                        viewModel.refresh()
                         toast("Appointment cancelled")
                     }
                 }
@@ -86,7 +95,7 @@ class QueueFragment : Fragment() {
             binding.btnDone.isEnabled = false
             launchSafely(onDone = { binding.btnDone.isEnabled = true }) {
                 ClinicRepo.completePickup()
-                render()
+                viewModel.refresh()
                 toast("Medicine received. Session complete!")
             }
         }
@@ -98,72 +107,97 @@ class QueueFragment : Fragment() {
         _binding = null
     }
 
-    /** Reloads the appointment from Supabase and redraws. Errors are ignored (we retry in 10 s). */
-    private suspend fun refreshQuietly() {
-        val hadAppointment = ClinicRepo.appointment != null
+    private fun render(state: QueueState) {
+        when (state) {
+            QueueState.Loading -> {
+                binding.tvEmpty.isVisible = false
+                binding.layoutTicket.isVisible = false
+                binding.layoutPharmacy.isVisible = false
+            }
 
-        try {
-            if (ClinicRepo.doctors.isEmpty()) ClinicRepo.loadDoctors()
-            ClinicRepo.refreshActive()
-        } catch (e: CancellationException) {
-            throw e
-        } catch (e: Exception) {
-            return
-        }
+            is QueueState.Error -> {
+                binding.tvEmpty.text = "${state.message}\nPull down to try again."
+                binding.tvEmpty.isVisible = true
+                binding.layoutTicket.isVisible = false
+                binding.layoutPharmacy.isVisible = false
+            }
 
-        render()
-        if (hadAppointment && ClinicRepo.appointment == null) {
-            toast("This appointment is no longer active")
+            is QueueState.Success -> renderTicket(state.data)
         }
     }
 
-    /** Shows the empty message, the ticket or the pharmacy queue, depending on the status. */
-    private fun render() {
-        val appt = ClinicRepo.appointment
+    private fun renderTicket(data: QueueData) {
+        val appt = data.appointment
+        val status = appt?.status
 
+        binding.tvEmpty.text = "No appointments yet. Glad to see you well!"
         binding.tvEmpty.isVisible = appt == null
-        binding.layoutTicket.isVisible = appt?.status == "waiting"
-        binding.layoutPharmacy.isVisible = appt?.status == "awaiting_medicine"
+        binding.layoutPharmacy.isVisible = status == "awaiting_medicine"
+        binding.layoutTicket.isVisible =
+            status == "waiting" || status == "called" || status == "done" || status == "completed"
 
         if (appt == null) {
             shownQr = null
             return
         }
 
-        if (appt.status == "awaiting_medicine") {
+        if (status == "awaiting_medicine") {
             binding.tvPharmacyNo.text = appt.pharmacyQueueNo
             return
         }
 
-        // Waiting for the doctor
-        val doctor = ClinicRepo.doctorFor(appt.doctorId)
+        // ----- Status badge -----
+        val badge = binding.tvStatus
+        when (status) {
+            "called" -> {
+                badge.text = "It's your turn!"
+                badge.setBackgroundResource(R.drawable.bg_badge_primary)
+                badge.setTextColor(requireContext().getColor(R.color.white))
+            }
+
+            "done", "completed" -> {
+                badge.text = "Completed"
+                badge.setBackgroundResource(R.drawable.bg_session_chip)
+                badge.setTextColor(requireContext().getColor(R.color.status_done))
+            }
+
+            else -> {
+                badge.text = "Waiting"
+                badge.setBackgroundResource(R.drawable.bg_session_chip)
+                badge.setTextColor(requireContext().getColor(R.color.teal))
+            }
+        }
+
+        // ----- Ticket details -----
         binding.tvQueueNo.text = appt.queueNo
-        binding.tvDoctorName.text = doctor?.name.orEmpty()
-        binding.tvDoctorInfo.text = if (doctor != null)
-            "${doctor.specialty} Â· ${doctor.room}"
-        else
-            ""
+        binding.tvDoctorName.text = data.doctor?.name.orEmpty()
+        binding.tvDoctorInfo.text = data.doctor?.room.orEmpty()
 
-        val n = ClinicRepo.peopleAhead
-        binding.tvAhead.text = when (n) {
-            0 -> "You're next! Please head to the room."
-            1 -> "1 person ahead of you"
-            else -> "$n people ahead of you"
+        val date = appt.appointmentDate
+            ?.let { runCatching { LocalDate.parse(it.take(10)).format(dateFormat) }.getOrNull() }
+        binding.tvSchedule.text = listOfNotNull(
+            date,
+            data.session?.replaceFirstChar { it.uppercase() },
+        ).joinToString(" · ")
+        binding.tvSchedule.isVisible = binding.tvSchedule.text.isNotEmpty()
+
+        // ----- QR: only while the ticket is still usable -----
+        val showQr = (status == "waiting" || status == "called") && !appt.qrToken.isNullOrBlank()
+        binding.layoutQr.isVisible = showQr
+        binding.tvQrHint.isVisible = showQr
+        if (showQr && shownQr != appt.qrToken) {
+            binding.ivQr.setImageBitmap(qrBitmap(appt.qrToken!!))
+            shownQr = appt.qrToken
         }
 
-        if (shownQr != appt.qrPayload) {
-            binding.ivQr.setImageBitmap(qrBitmap(appt.qrPayload))
-            shownQr = appt.qrPayload
-        }
-    }
+        // ----- Now serving -----
+        val serving = data.nowServing
+        binding.cardNowServing.isVisible = serving != null
+        binding.tvServingNo.text = serving?.queueNo ?: "–"
+        binding.tvWaitingCount.text = (serving?.waitingCount ?: 0).toString()
 
-    // Ending the session: the scanned (or simulated) code must match this ticket
-    private fun checkQr(content: String) {
-        if (content == ClinicRepo.appointment?.qrPayload) {
-            startActivity(Intent(requireContext(), PrescriptionActivity::class.java))
-        } else {
-            toast("That QR doesn't match your ticket")
-        }
+        // Only a still-waiting ticket can be cancelled
+        binding.btnCancel.isVisible = status == "waiting"
     }
 
     private fun toast(msg: String) =

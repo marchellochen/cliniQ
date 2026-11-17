@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.cliniq.databinding.ActivityDoctorsBinding
 import com.example.cliniq.databinding.ItemDoctorBinding
 
@@ -65,23 +67,12 @@ class DoctorsActivity : BaseActivity() {
                 filteredDoctors
             ) { doctor ->
 
-                // Choose form based on booking flow
-                val targetActivity =
-                    if (bookingFlow == FLOW_APPOINTMENT) {
-                        AppointmentFormActivity::class.java
-                    } else {
-                        FormActivity::class.java
-                    }
-
-                // Open the selected form
-                val formIntent = Intent(
-                    this,
-                    targetActivity
-                ).apply {
-                    putExtra("doctorId", doctor.id)
-                }
-
-                startActivity(formIntent)
+                // Open the doctor profile; it forwards the booking flow to the right form
+                startActivity(
+                    Intent(this, DoctorProfileActivity::class.java)
+                        .putExtra("doctorId", doctor.id)
+                        .putExtra(EXTRA_BOOKING_FLOW, bookingFlow)
+                )
             }
 
             // Empty state message
@@ -141,6 +132,11 @@ class DoctorAdapter(
             .removePrefix("dr. ")
             .firstOrNull()
             ?.uppercase() ?: "D"
+
+        // Photo covers the initial; without a photo (or if it fails) the initial stays visible
+        binding.ivPhoto.load(doctor.photoUrl?.takeIf { it.isNotBlank() }) {
+            transformations(CircleCropTransformation())
+        }
 
         binding.tvName.text = doctor.name
         binding.tvSpecialty.text = doctor.specialty

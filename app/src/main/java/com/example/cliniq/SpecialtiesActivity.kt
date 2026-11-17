@@ -7,6 +7,10 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.ArrayAdapter
+import android.widget.Filter
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -14,6 +18,7 @@ import android.widget.TextView
 import android.widget.Toast
 
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.cliniq.databinding.ActivitySpecialtiesBinding
 import com.google.android.material.card.MaterialCardView
@@ -189,9 +194,97 @@ class SpecialtiesActivity : BaseActivity() {
         binding.tvEmpty.visibility = View.GONE
 
         // Load doctors from Supabase.
+        binding.rvResults.layoutManager = LinearLayoutManager(this)
+
+        binding.etSearchDoctor.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, st: Int, c: Int, a: Int) = Unit
+            override fun onTextChanged(s: CharSequence?, st: Int, b: Int, c: Int) = Unit
+            override fun afterTextChanged(s: Editable?) = applySearch()
+        })
+
         launchSafely {
             ClinicRepo.loadDoctors()
             renderSpecialties()
+            applySearch()
+        }
+
+        // Branches come from the schedule view; the dropdown stays usable even if this fails.
+        launchSafely {
+            val schedules = DoctorProfileRepository().getAllSchedules()
+            setupBranchDropdown(schedules)
+        }
+    }
+
+
+    // =====================================
+    // SEARCH (DOCTOR NAME + BRANCH)
+    // =====================================
+
+    private var selectedBranchId: Int? = null
+    private var doctorIdsByBranch: Map<Int, Set<Int>> = emptyMap()
+
+    /** Adapter that always lists every branch, even after one was selected. */
+    private class AllItemsAdapter(
+        context: android.content.Context,
+        private val items: List<String>
+    ) : ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, items) {
+        override fun getFilter() = object : Filter() {
+            override fun performFiltering(c: CharSequence?) =
+                FilterResults().also { it.values = items; it.count = items.size }
+
+            override fun publishResults(c: CharSequence?, r: FilterResults?) =
+                notifyDataSetChanged()
+        }
+    }
+
+    private fun setupBranchDropdown(schedules: List<DoctorSchedule>) {
+        val branches = schedules
+            .filter { it.branchId != null && !it.branchName.isNullOrBlank() }
+            .distinctBy { it.branchId }
+            .sortedBy { it.branchName }
+
+        doctorIdsByBranch = schedules
+            .filter { it.branchId != null }
+            .groupBy({ it.branchId!! }, { it.doctorId })
+            .mapValues { it.value.toSet() }
+
+        val allLabel = "All branches"
+        val labels = listOf(allLabel) + branches.map { it.branchName!! }
+
+        binding.actBranch.setAdapter(AllItemsAdapter(this, labels))
+        binding.actBranch.setOnItemClickListener { _, _, position, _ ->
+            selectedBranchId = if (position == 0) null else branches[position - 1].branchId
+            applySearch()
+        }
+    }
+
+    private fun applySearch() {
+        val query = binding.etSearchDoctor.text?.toString()?.trim().orEmpty()
+        val branchId = selectedBranchId
+        val searching = query.isNotEmpty() || branchId != null
+
+        binding.layoutSpecialtiesGrid.visibility = if (searching) View.GONE else View.VISIBLE
+        binding.tvTitle.text = if (searching) "Search results" else "All Medical Specialties"
+        binding.rvResults.visibility = if (searching) View.VISIBLE else View.GONE
+
+        if (!searching) {
+            binding.tvNoResults.visibility = View.GONE
+            return
+        }
+
+        val allowedIds = branchId?.let { doctorIdsByBranch[it].orEmpty() }
+        val results = ClinicRepo.doctors.filter { doctor ->
+            doctor.name.contains(query, ignoreCase = true) &&
+                (allowedIds == null || doctor.id in allowedIds)
+        }
+
+        binding.tvNoResults.visibility = if (results.isEmpty()) View.VISIBLE else View.GONE
+        binding.rvResults.adapter = DoctorAdapter(results) { doctor ->
+            startActivity(
+                Intent(this, DoctorProfileActivity::class.java)
+                    .putExtra("doctorId", doctor.id)
+                    .putExtra(DoctorsActivity.EXTRA_BOOKING_FLOW, bookingFlow)
+            )
         }
     }
 

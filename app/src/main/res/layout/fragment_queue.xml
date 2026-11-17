@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -27,7 +28,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Waiting for the doctor: the queue ticket -->
+            <!-- Active ticket: waiting / called / completed -->
             <LinearLayout
                 android:id="@+id/layoutTicket"
                 android:layout_width="match_parent"
@@ -37,18 +38,59 @@
                 android:visibility="gone">
 
                 <com.google.android.material.card.MaterialCardView
-                    style="@style/InfoCard">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
-                        android:padding="18dp">
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tvStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="14dp"
+                            android:paddingTop="6dp"
+                            android:paddingEnd="14dp"
+                            android:paddingBottom="6dp"
+                            android:textStyle="bold" />
+
+                        <!-- QR code: white background + padding so it scans well -->
+                        <FrameLayout
+                            android:id="@+id/layoutQr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/ivQr"
+                                android:layout_width="220dp"
+                                android:layout_height="220dp"
+                                android:background="@color/white"
+                                android:contentDescription="Queue QR code"
+                                android:padding="12dp" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvQrHint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Show this QR code to the staff"
+                            android:textColor="@color/gray"
+                            android:textSize="13sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:text="Queue number"
                             android:textColor="@color/teal_dark" />
 
@@ -64,6 +106,7 @@
                             android:id="@+id/tvDoctorName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/dark_navy"
                             android:textStyle="bold" />
 
                         <TextView
@@ -73,44 +116,82 @@
                             android:textColor="@color/scrub_blue" />
 
                         <TextView
-                            android:id="@+id/tvAhead"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp" />
-
-                        <TextView
+                            android:id="@+id/tvSchedule"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="Pull down to refresh"
                             android:textColor="@color/gray"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <ImageView
-                    android:id="@+id/ivQr"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="16dp"
-                    android:contentDescription="Session QR code" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Now serving -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardNowServing"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:text="Scan this code when your appointment ends"
-                    android:textColor="@color/gray"
-                    android:textSize="13sp" />
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp">
 
-                <Button
-                    android:id="@+id/btnSimulate"
-                    style="@style/BigButtonOutlined"
-                    android:text="Simulate scan (demo)" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Now serving"
+                                android:textColor="@color/gray"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:id="@+id/tvServingNo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/dark_navy"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Still waiting"
+                                android:textColor="@color/gray"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:id="@+id/tvWaitingCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/dark_navy"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <Button
                     android:id="@+id/btnCancel"
                     style="@style/BigButtonDanger"
+                    android:layout_marginTop="24dp"
                     android:text="Cancel appointment" />
             </LinearLayout>
 

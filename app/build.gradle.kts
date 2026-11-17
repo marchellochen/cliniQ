@@ -56,6 +56,7 @@ kotlin {
 
 dependencies {
     implementation("androidx.activity:activity-ktx:1.13.0")
+    implementation("androidx.fragment:fragment-ktx:1.8.5")
     implementation("androidx.constraintlayout:constraintlayout:2.2.2")
     // AndroidX and Material
     implementation("androidx.core:core-ktx:1.13.1")
@@ -65,9 +66,14 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+
+    // Image loading (doctor photos)
+    implementation("io.coil-kt:coil:2.7.0")
 
     // QR code generation and scanning
     implementation("com.google.zxing:core:3.5.3")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation("com.google.android.gms:play-services-code-scanner:16.1.0")
 
     // Supabase

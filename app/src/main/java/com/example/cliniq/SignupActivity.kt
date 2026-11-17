@@ -1,6 +1,7 @@
 package com.example.cliniq
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -133,6 +134,7 @@ class SignupActivity : AppCompatActivity() {
             val name = binding.etName.text.toString().trim()
             val nik = binding.etNik.text.toString().trim()
             val dateOfBirth = binding.etDateOfBirth.text.toString().trim()
+            val email = binding.etEmail.text.toString().trim()
             val phone = binding.etPhone.text.toString().trim()
             val phoneDigits = phone.filter { it.isDigit() }
             val pin = binding.etPin.text.toString().trim()
@@ -160,6 +162,10 @@ class SignupActivity : AppCompatActivity() {
                     showMessage("Please select your gender.")
                 }
 
+                !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                    binding.etEmail.error = "Please enter a valid email address"
+                }
+
                 phoneDigits.length !in 9..13 -> {
                     binding.etPhone.error = "Please enter a valid WhatsApp number"
                 }
@@ -173,11 +179,83 @@ class SignupActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    showMessage("All information has been validated successfully.")
+                    createAccount(
+                        name = name,
+                        email = email,
+                        pin = pin,
+                        nik = nik,
+                        dateOfBirth = dateOfBirth,
+                        gender = if (binding.rbMale.isChecked) "Male" else "Female",
+                        phoneDigits = phoneDigits,
+                    )
                 }
             }
         }
     }
+
+    // CREATE ACCOUNT (Supabase Auth, then the extra details on the profile)
+    private fun createAccount(
+        name: String,
+        email: String,
+        pin: String,
+        nik: String,
+        dateOfBirth: String,
+        gender: String,
+        phoneDigits: String,
+    ) {
+        binding.btnSignup.isEnabled = false
+
+        launchSafely(
+            onDone = { binding.btnSignup.isEnabled = true },
+            onError = { e ->
+                val msg = e.message.orEmpty()
+                if (msg.contains("already", ignoreCase = true)) {
+                    binding.etEmail.error = "This email is already registered"
+                } else {
+                    showMessage(if (msg.isNotBlank()) msg else "Sign up failed")
+                }
+            }
+        ) {
+            // The database trigger creates the profile row with the full name
+            ClinicRepo.signUp(name, email, pin)
+
+            if (ClinicRepo.hasSession()) {
+                // Save the rest of the details; a failure here must not undo the sign up
+                runCatching {
+                    ClinicRepo.saveProfile(
+                        Profile(
+                            fullName = name,
+                            nik = nik,
+                            dateOfBirth = toIsoDate(dateOfBirth),
+                            phone = "+62" + phoneDigits.removePrefix("0").removePrefix("62"),
+                            gender = gender,
+                        )
+                    )
+                }
+
+                startActivity(
+                    Intent(this, HomeActivity::class.java)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                )
+                finish()
+            } else {
+                // Email confirmation is switched on in Supabase: no session until confirmed
+                Toast.makeText(
+                    this,
+                    "Account created. Please confirm your email, then log in.",
+                    Toast.LENGTH_LONG
+                ).show()
+                finish()
+            }
+        }
+    }
+
+    /** "23/11/1990" becomes "1990-11-23". */
+    private fun toIsoDate(display: String): String? =
+        runCatching {
+            val parsed = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(display)
+            SimpleDateFormat("yyyy-MM-dd", Locale.US).format(parsed!!)
+        }.getOrNull()
 
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

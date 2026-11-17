@@ -45,6 +45,14 @@ class LoginActivity : AppCompatActivity() {
                     if (e.message?.contains("invalid_credentials", ignoreCase = true) == true) {
                         binding.emailLayout.error = "Invalid email or password"
                         binding.passwordLayout.error = "Invalid email or password"
+                    } else if (e.message?.contains("not_confirmed", ignoreCase = true) == true ||
+                        e.message?.contains("not confirmed", ignoreCase = true) == true
+                    ) {
+                        Toast.makeText(
+                            this,
+                            "Please confirm your email first. Check your inbox.",
+                            Toast.LENGTH_LONG
+                        ).show()
                     } else {
                         Toast.makeText(
                             this,
@@ -58,6 +66,24 @@ class LoginActivity : AppCompatActivity() {
                 goHome()
             }
         }
+        binding.tvForgotPassword.setOnClickListener {
+            val email = binding.etEmail.text.toString().trim()
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.emailLayout.error = "Enter your email above first"
+                return@setOnClickListener
+            }
+            binding.emailLayout.error = null
+            binding.tvForgotPassword.isEnabled = false
+            launchSafely(onDone = { binding.tvForgotPassword.isEnabled = true }) {
+                ClinicRepo.sendPasswordReset(email)
+                Toast.makeText(
+                    this,
+                    "If this email is registered, a reset link has been sent.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+
         binding.tvGoSignup.setOnClickListener { startActivity(Intent(this, SignupActivity::class.java)) }
     }
 

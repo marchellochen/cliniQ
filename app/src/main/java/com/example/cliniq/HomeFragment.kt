@@ -151,6 +151,11 @@ class HomeFragment : Fragment() {
             openSpecialties(DoctorsActivity.FLOW_QUEUE)
         }
 
+        // Staff only: open the QR scanner.
+        binding.btnScanQr.setOnClickListener {
+            startActivity(Intent(requireContext(), StaffScanActivity::class.java))
+        }
+
         // View existing queue ticket.
         binding.btnTicket.setOnClickListener {
             (requireActivity() as HomeActivity)
@@ -266,6 +271,8 @@ class HomeFragment : Fragment() {
         // Queue button label.
         binding.btnBook.text = "Get Queue Number"
 
+        binding.btnScanQr.isVisible = ClinicRepo.profile.isStaff == true
+
         val message = ClinicRepo.lastMessage
 
         binding.cardMessage.isVisible = message != null
@@ -293,6 +300,7 @@ class HomeFragment : Fragment() {
 
             binding.tvQueueStatus.text = when (appt.status) {
                 "waiting" -> "WAITING"
+                "called" -> "YOUR TURN"
                 "awaiting_medicine" -> "WAITING FOR MEDICINE"
                 else -> appt.status.uppercase()
             }
@@ -314,7 +322,9 @@ class HomeFragment : Fragment() {
                     append("\n")
                 }
 
-                if (!inPharmacy) {
+                if (appt.status == "called") {
+                    append("It's your turn! Please head to the room.")
+                } else if (!inPharmacy) {
                     append("${ClinicRepo.peopleAhead} people ahead of you.")
                 } else {
                     append("Please proceed to the pharmacy counter.")

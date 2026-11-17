@@ -1,6 +1,7 @@
 package com.example.cliniq
 
 import android.content.Intent
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -40,6 +41,21 @@ open class BaseActivity : AppCompatActivity() {
     protected fun setupBar(title: String, showBack: Boolean = true) {
         supportActionBar?.title = title
         supportActionBar?.setDisplayHomeAsUpEnabled(showBack)
+    }
+
+    /** Pushes [root] down if the action bar is drawn on top of it (edge-to-edge windows). */
+    protected fun keepContentBelowActionBar(root: View) {
+        val bar = findViewById<View>(androidx.appcompat.R.id.action_bar_container) ?: return
+        val adjust = {
+            val barLoc = IntArray(2).also { bar.getLocationInWindow(it) }
+            val rootLoc = IntArray(2).also { root.getLocationInWindow(it) }
+            val overlap = (barLoc[1] + bar.height - rootLoc[1]).coerceAtLeast(0)
+            if (overlap != 0 && root.paddingTop == 0) {
+                root.setPadding(root.paddingLeft, overlap, root.paddingRight, root.paddingBottom)
+            }
+        }
+        root.post(adjust)
+        root.viewTreeObserver.addOnGlobalLayoutListener(adjust)
     }
 
     override fun onSupportNavigateUp(): Boolean {

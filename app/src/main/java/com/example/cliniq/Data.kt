@@ -23,6 +23,23 @@ data class Doctor(
     val name: String,
     val specialty: String,
     val room: String,
+    @SerialName("photo_url") val photoUrl: String? = null,
+    val bio: String? = null,
+    @SerialName("experience_years") val experienceYears: Int? = null,
+)
+
+/** One row of the v_doctor_schedules view. day_of_week: 1 = Monday ... 7 = Sunday. */
+@Serializable
+data class DoctorSchedule(
+    @SerialName("schedule_id") val scheduleId: Int,
+    @SerialName("doctor_id") val doctorId: Int,
+    @SerialName("branch_id") val branchId: Int? = null,
+    @SerialName("branch_name") val branchName: String? = null,
+    @SerialName("day_of_week") val dayOfWeek: Int,
+    @SerialName("start_time") val startTime: String,
+    @SerialName("end_time") val endTime: String,
+    val quota: Int? = null,
+    val session: String,
 )
 
 @Serializable
@@ -36,6 +53,8 @@ data class Profile(
     val allergies: String? = null,
     val medications: String? = null,
     val conditions: String? = null,
+    val nik: String? = null,
+    @SerialName("is_staff") val isStaff: Boolean? = null,
 )
 
 @Serializable
@@ -49,11 +68,35 @@ data class Appointment(
     @SerialName("needs_medicine") val needsMedicine: Boolean? = null,
     @SerialName("pharmacy_queue_no") val pharmacyQueueNo: String? = null,
     @SerialName("created_at") val createdAt: String? = null,
+    @SerialName("schedule_id") val scheduleId: Int? = null,
+    @SerialName("appointment_date") val appointmentDate: String? = null,
+    @SerialName("qr_token") val qrToken: String? = null,
+    @SerialName("called_at") val calledAt: String? = null,
 ) {
 
     val qrPayload: String
         get() = "CLINIQ:$id:$queueNo"
 }
+
+
+/** Result of the get_now_serving RPC. */
+@Serializable
+data class NowServing(
+    @SerialName("queue_no") val queueNo: String? = null,
+    @SerialName("waiting_count") val waitingCount: Int = 0,
+)
+
+/** Result of the scan_queue_qr RPC (success or failure). */
+@Serializable
+data class ScanResult(
+    val success: Boolean = false,
+    val message: String? = null,
+    @SerialName("appointment_id") val appointmentId: Long? = null,
+    @SerialName("queue_no") val queueNo: String? = null,
+    @SerialName("patient_name") val patientName: String? = null,
+    @SerialName("doctor_name") val doctorName: String? = null,
+    val room: String? = null,
+)
 
 
 // ---------------------------------------------------------------------------
@@ -107,6 +150,10 @@ object ClinicRepo {
     var peopleAhead = 0
         private set
 
+    /** The ticket that was just finished (status done), so the Queue page can show "Completed". */
+    var completedAppointment: Appointment? = null
+        private set
+
     var lastMessage: String? = null
 
     val displayName: String
@@ -121,6 +168,7 @@ object ClinicRepo {
     private fun clear() {
         profile = Profile()
         appointment = null
+        completedAppointment = null
         peopleAhead = 0
         lastMessage = null
     }
@@ -151,6 +199,11 @@ object ClinicRepo {
             this.email = email
             this.password = password
         }
+    }
+
+    /** Sends a password-reset email through Supabase Auth. */
+    suspend fun sendPasswordReset(email: String) {
+        supabase.auth.resetPasswordForEmail(email)
     }
 
     suspend fun logout() {
@@ -200,6 +253,8 @@ object ClinicRepo {
             set("allergies", updated.allergies)
             set("medications", updated.medications)
             set("conditions", updated.conditions)
+            // Only written when known, so older rows / screens without NIK are left untouched
+            updated.nik?.let { set("nik", it) }
         }) {
             filter {
                 eq("id", id)
@@ -213,12 +268,13 @@ object ClinicRepo {
     /** The patient's current queue entry (waiting for the doctor, or waiting for medicine). */
     private suspend fun loadActive() {
         val id = uid()
+        val previous = appointment
 
         appointment = supabase.from("appointments")
             .select {
                 filter {
                     eq("user_id", id)
-                    isIn("status", listOf("waiting", "awaiting_medicine"))
+                    isIn("status", listOf("waiting", "called", "awaiting_medicine"))
                 }
                 order("created_at", Order.DESCENDING)
                 limit(1)
@@ -226,11 +282,52 @@ object ClinicRepo {
             .decodeList<Appointment>()
             .firstOrNull()
 
+        // The ticket we were showing left the active list: it may have just been completed
+        if (appointment == null && previous != null) {
+            val latest = supabase.from("appointments")
+                .select {
+                    filter { eq("id", previous.id) }
+                }
+                .decodeSingleOrNull<Appointment>()
+
+            if (latest?.status == "done" || latest?.status == "completed") {
+                completedAppointment = latest
+            }
+        } else if (appointment != null) {
+            completedAppointment = null
+        }
+
         peopleAhead = appointment
             ?.takeIf { it.status == "waiting" }
             ?.let { fetchPeopleAhead(it.id) }
             ?: 0
     }
+
+    /** Who is being served by this doctor right now, and how many patients are still waiting. */
+    suspend fun getNowServing(doctorId: Int): NowServing =
+        supabase.postgrest.rpc(
+            "get_now_serving",
+            buildJsonObject {
+                put("p_doctor_id", doctorId)
+            }
+        ).decodeAs<NowServing>()
+
+    /** Staff only: moves the queue forward for the patient who owns this QR token. */
+    suspend fun scanQueueQr(token: String): ScanResult =
+        supabase.postgrest.rpc(
+            "scan_queue_qr",
+            buildJsonObject {
+                put("p_token", token)
+            }
+        ).decodeAs<ScanResult>()
+
+    suspend fun loadSchedule(scheduleId: Int): DoctorSchedule? =
+        supabase.from("v_doctor_schedules")
+            .select {
+                filter { eq("schedule_id", scheduleId) }
+            }
+            .decodeList<DoctorSchedule>()
+            .firstOrNull()
 
     private suspend fun fetchPeopleAhead(appointmentId: Long): Int =
         supabase.postgrest.rpc(
@@ -266,25 +363,7 @@ object ClinicRepo {
         doctor: Doctor,
         symptoms: String,
         duration: String,
-        dateOfBirth: String?,
-        allergies: String,
     ) {
-        val id = uid()
-
-        supabase.from("profiles").update({
-            set("date_of_birth", dateOfBirth)
-            set("allergies", allergies)
-        }) {
-            filter {
-                eq("id", id)
-            }
-        }
-
-        profile = profile.copy(
-            dateOfBirth = dateOfBirth,
-            allergies = allergies
-        )
-
         // The database hands out the queue number (see book_appointment in SQL).
         val appt = supabase.postgrest.rpc(
             "book_appointment",
@@ -296,6 +375,7 @@ object ClinicRepo {
         ).decodeAs<Appointment>()
 
         appointment = appt
+        completedAppointment = null
         lastMessage = null
         peopleAhead = fetchPeopleAhead(appt.id)
     }
